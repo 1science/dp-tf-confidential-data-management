@@ -1,5 +1,3 @@
-variable "environment" {
-  description = "Name of the environment."
-  type        = string
-  default     = "dev"
+variable "config" {
+  type = map(string)
 }

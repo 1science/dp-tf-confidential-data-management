@@ -15,7 +15,7 @@ module "globals" {
 locals {
   kubernetes_namespace                   = "person-transformation"
   kubernetes_service_account             = "dp-orcid-transformer-service"
-  orcid_edm_bucket_name      = "dp-orcid-edm-${module.globals.environment}"
+  orcid_edm_bucket_name      = "com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
   orcid_edm_bucket_versioning_enabled = "false"
 
   common_tags     = {
