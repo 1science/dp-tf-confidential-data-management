@@ -1,11 +1,11 @@
 terraform {
-  required_version = ">= 1.1.9"
+  required_version = ">= 0.12.24"
   backend "s3" {}
 }
 
 provider "aws" {
-  region  = module.globals.aws_region
-  allowed_account_ids = list(module.globals.aws_account_id)
+  region  = "us-east-2"
+  alias = "us-east-2"
 }
 
 module "globals" {

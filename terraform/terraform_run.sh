@@ -33,7 +33,7 @@ function terraform_init {
 
 
 function terraform_plan {
-    ##export TF_CLI_ARGS_plan=-var-file=./configurations/${ENVIRONMENT}_config.tfvars.json
+    export TF_CLI_ARGS_plan=-var-file=./configuration/${ENVIRONMENT}_config.tfvars.json
     terraform plan -lock=false
 }
 

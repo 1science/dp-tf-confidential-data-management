@@ -16,5 +16,5 @@ module "s3_bucket" {
 
 resource "aws_s3_bucket_policy" "orcid_edm_data_bucket_policy" {
   bucket = module.s3_bucket.s3_bucket_name
-  policy = file("configuration/dataconfidential-nonprod-policy.json")
+  policy = file("configurations/dataconfidential-nonprod-policy.json")
 }
