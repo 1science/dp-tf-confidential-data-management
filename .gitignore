@@ -8,3 +8,4 @@ out/
 .bloop/
 .bsp/
 terraform/.terraform/
+.terraform.lock.hcl
