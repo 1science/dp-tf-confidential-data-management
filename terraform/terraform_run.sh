@@ -23,7 +23,7 @@ s3_state_prefix=tfstate/${ENVIRONMENT}/${AWS_ACCOUNT_ALIAS}
 
 function terraform_init {
     # cleanup cached stuff
-    rm -rf .terraform
+    # rm -rf .terraform
     terraform init -backend-config="bucket=${CONFIG_BUCKET}" \
       -backend-config="key=$s3_state_prefix-${COMPONENT}.tfstate" \
       -backend-config="acl=bucket-owner-full-control" \
@@ -33,8 +33,7 @@ function terraform_init {
 
 
 function terraform_plan {
-    export TF_CLI_ARGS_plan=-var-file=./configurations/${ENVIRONMENT}_config.tfvars.json
-    terraform plan -lock=false
+    terraform plan -var-file=./configurations/${ENVIRONMENT}_config.tfvars.json -out=out.tfstate
 }
 
 

@@ -9,3 +9,4 @@ out/
 .bsp/
 terraform/.terraform/
 .terraform.lock.hcl
+out.tfstate
