@@ -1,16 +1,16 @@
 
 resource "aws_s3_bucket" "dataconfidential" {
-  bucket   = "com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
+  bucket   = var.config.bucket
   provider = aws.bucket
-  arn      = "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
+  arn      = var.config.bucket_arn
 
   tags = {
     Name        = "dataconfidential"
-    Environment = "nonprod"
+    Environment = var.config.tag_environment
   }
 }
 
 resource "aws_s3_bucket_policy" "dataconfidential_policy" {
-  bucket = "com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
-  policy = file("configurations/dataconfidential-nonprod-policy.json")
+  bucket = var.config.bucket
+  policy = var.config.environment == "dev" ? file("configurations/dataconfidential-nonprod-policy.json") : file("configurations/dataconfidential-prod-policy.json")
 }

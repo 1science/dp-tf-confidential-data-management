@@ -1,5 +1,4 @@
 provider "aws" {
-  region                   = "us-east-2"
   alias                    = "bucket"
   shared_credentials_files = ["~/.aws/credentials"]
   profile                  = "dp-dev"
