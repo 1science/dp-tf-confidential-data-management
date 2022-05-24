@@ -28,12 +28,12 @@ function terraform_init {
       -backend-config="key=$s3_state_prefix-${COMPONENT}.tfstate" \
       -backend-config="acl=bucket-owner-full-control" \
       -backend-config="region=${aws_bootstrap_region}" \
-      -backend-config="dynamodb_table=tf-state-lock-dataplatform-${ENVIRONMENT}"
+      -backend-config="dynamodb_table=tf-state-lock-dataconfidential-${ENVIRONMENT}"
 }
 
 
 function terraform_plan {
-    terraform plan -var-file=./configurations/${ENVIRONMENT}_config.tfvars.json -lock=false
+    terraform plan -var-file=./configurations/${ENVIRONMENT}_config.tfvars.json -out=out/out.bin
 }
 
 
