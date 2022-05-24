@@ -1,20 +1,18 @@
-module "s3_bucket" {
-  source = "git::ssh://git@github.com/elsevier-centraltechnology/rp-terraform-s3bucket?ref=4.4.0"
 
-  bucket_name          = local.orcid_edm_bucket_name
-  s3_bucket_versioning = local.orcid_edm_bucket_versioning_enabled
-  tag_contact          = module.globals.contact
-  tag_cost_code        = module.globals.cost_code
-  tag_description      = "Bucket for transformed orcid edm data"
-  tag_environment      = module.globals.environment
-  tag_orchestration    = local.common_tags["Orchestration"]
-  tag_product          = module.globals.product
-  tag_sub_product      = module.globals.sub_product
+resource "aws_s3_bucket" "dataconfidential" {
+  bucket   = var.config["bucket"]
+  provider = aws.bucket
+  arn      = var.config["bucket_arn"]
+
+  tags = {
+    Name        = "dataconfidential"
+    Environment = var.config["tag_environment"]
+    Product     = "Data Platform"
+  }
 }
 
-// ADD IN K8s SERVICE ACCOUNT LATER
-
-resource "aws_s3_bucket_policy" "orcid_edm_data_bucket_policy" {
-  bucket = module.s3_bucket.s3_bucket_name
-  policy = file("configurations/dataconfidential-nonprod-policy.json")
+resource "aws_s3_bucket_policy" "dataconfidential_policy" {
+  bucket = var.config["bucket"]
+  policy = var.config["environment"] == "dev" ? file("configurations/dataconfidential-nonprod-policy.json") : file("configurations/dataconfidential-prod-policy.json")
 }
+

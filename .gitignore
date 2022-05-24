@@ -8,4 +8,7 @@ out/
 .bloop/
 .bsp/
 terraform/.terraform/
-.terraform.lock.hcl
+terraform/.terraform.lock.hcl
+terraform/out/
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
