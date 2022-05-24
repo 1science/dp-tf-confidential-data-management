@@ -33,7 +33,7 @@ function terraform_init {
 
 
 function terraform_plan {
-    terraform plan -var-file=./configurations/${ENVIRONMENT}_config.tfvars.json -out=out.tfstate
+    terraform plan -var-file=./configurations/${ENVIRONMENT}_config.tfvars.json -lock=false
 }
 
 

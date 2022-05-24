@@ -7,3 +7,8 @@ provider "aws" {
     role_arn     = "arn:aws:iam::210275200797:role/ADFS-Developer"
   }
 }
+
+terraform {
+  backend "s3" {
+  }
+}
