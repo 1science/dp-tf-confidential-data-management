@@ -18,3 +18,10 @@ cd terraform
 ./terraform_run {dev|prod}
 terraform apply out/out.bin
 ```
+
+## Import a ressource
+
+Example with a IAM policy:
+```bash
+terraform import -var-file=./configurations/dev_config.tfvars.json aws_iam_policy.{ressource_name} {arn}
+```

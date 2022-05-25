@@ -3,19 +3,19 @@ resource "aws_iam_role" "data_force_control_role" {
   count = var.config["environment"] == "dev" ? 1 : 0
 
   provider = aws.bucket
-  name = "rdp-data-force-control-role"
+  name     = "rdp-data-force-control-role"
   assume_role_policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Effect": "Allow",
-        "Principal": {
-          "AWS": [
+        "Effect" : "Allow",
+        "Principal" : {
+          "AWS" : [
             "arn:aws:iam::296075517832:user/data-force",
             "arn:aws:iam::296075517832:role/ADFS-Developer"
           ]
         },
-        "Action": "sts:AssumeRole"
+        "Action" : "sts:AssumeRole"
       }
     ]
   })
@@ -23,31 +23,34 @@ resource "aws_iam_role" "data_force_control_role" {
 
 resource "aws_iam_policy" "data_force_control_role_policy" {
   count = var.config["environment"] == "dev" ? 1 : 0
+
+  provider = aws.bucket
+  name     = "rdp-data-force-control-policy"
   policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Sid": "AllowUserToSeeBucketListInTheConsole",
-        "Action": [
+        "Sid" : "AllowUserToSeeBucketListInTheConsole",
+        "Action" : [
           "s3:ListAllMyBuckets",
           "s3:GetBucketLocation"
         ],
-        "Effect": "Allow",
-        "Resource": [
+        "Effect" : "Allow",
+        "Resource" : [
           "arn:aws:s3:::*"
         ]
       },
       {
-        "Sid": "VisualEditor0",
-        "Effect": "Allow",
-        "Action": "s3:ListBucket",
-        "Resource": [
+        "Sid" : "VisualEditor0",
+        "Effect" : "Allow",
+        "Action" : "s3:ListBucket",
+        "Resource" : [
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
         ],
-        "Condition": {
-          "StringLike": {
-            "s3:prefix": [
+        "Condition" : {
+          "StringLike" : {
+            "s3:prefix" : [
               "",
               "dp-patent/*",
               "dp-patent",
@@ -62,16 +65,16 @@ resource "aws_iam_policy" "data_force_control_role_policy" {
         }
       },
       {
-        "Sid": "applicationdatalistbucket",
-        "Effect": "Allow",
-        "Action": "s3:ListBucket",
-        "Resource": [
+        "Sid" : "applicationdatalistbucket",
+        "Effect" : "Allow",
+        "Action" : "s3:ListBucket",
+        "Resource" : [
           "arn:aws:s3:::com-elsevier-rdp-applicationdata-nonprod-useast2-1",
           "arn:aws:s3:::com-elsevier-rdp-applicationdata-prod-useast2-1"
         ],
-        "Condition": {
-          "StringLike": {
-            "s3:prefix": [
+        "Condition" : {
+          "StringLike" : {
+            "s3:prefix" : [
               "",
               "dp-patent-harvester-reader/*",
               "dp-patent-harvester-reader"
@@ -80,9 +83,9 @@ resource "aws_iam_policy" "data_force_control_role_policy" {
         }
       },
       {
-        "Sid": "applicationdata",
-        "Effect": "Allow",
-        "Action": [
+        "Sid" : "applicationdata",
+        "Effect" : "Allow",
+        "Action" : [
           "s3:PutObject",
           "s3:GetObject",
           "s3:ListBucketMultipartUploads",
@@ -92,15 +95,15 @@ resource "aws_iam_policy" "data_force_control_role_policy" {
           "s3:PutObjectAcl",
           "s3:ListMultipartUploadParts"
         ],
-        "Resource": [
+        "Resource" : [
           "arn:aws:s3:::com-elsevier-rdp-applicationdata-nonprod-useast2-1/dp-patent-harvester-reader/*",
           "arn:aws:s3:::com-elsevier-rdp-applicationdata-prod-useast2-1/dp-patent-harvester-reader/*"
         ]
       },
       {
-        "Sid": "VisualEditor1",
-        "Effect": "Allow",
-        "Action": [
+        "Sid" : "VisualEditor1",
+        "Effect" : "Allow",
+        "Action" : [
           "s3:PutObject",
           "s3:GetObject",
           "s3:ListBucketMultipartUploads",
@@ -110,7 +113,7 @@ resource "aws_iam_policy" "data_force_control_role_policy" {
           "s3:PutObjectAcl",
           "s3:ListMultipartUploadParts"
         ],
-        "Resource": [
+        "Resource" : [
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/*",
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/*",
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-orcid",
@@ -128,10 +131,10 @@ resource "aws_iam_policy" "data_force_control_role_policy" {
         ]
       },
       {
-        "Sid": "AllowNonDPBucektAccess",
-        "Effect": "Allow",
-        "Action": "s3:*",
-        "Resource": [
+        "Sid" : "AllowNonDPBucektAccess",
+        "Effect" : "Allow",
+        "Action" : "s3:*",
+        "Resource" : [
           "arn:aws:s3:::dp-patent",
           "arn:aws:s3:::dp-patent/*",
           "arn:aws:s3:::patent-zip-xml/*",
@@ -140,5 +143,4 @@ resource "aws_iam_policy" "data_force_control_role_policy" {
       }
     ]
   })
-  name = "rdp-data-force-control-policy"
 }
