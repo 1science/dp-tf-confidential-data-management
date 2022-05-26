@@ -8,10 +8,7 @@ resource "aws_iam_role" "dp_access_readwrite" {
       {
         "Effect" : "Allow",
         "Principal" : {
-          "AWS" : [
-            "arn:aws:iam::296075517832:role/dataplatform-${var.config.environment}-dp-orcid-transformer-service-iam-role",
-            "arn:aws:iam::296075517832:role/ADFS-Developer"
-          ]
+          "AWS" : var.config["dp_access_read_write_arn"]
         },
         "Action" : "sts:AssumeRole"
       },

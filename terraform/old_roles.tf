@@ -26,7 +26,7 @@ resource "aws_iam_policy" "data_force_control_role_policy" {
 
   provider    = aws.bucket
   name        = "rdp-data-force-control-policy"
-  description = "Temporary policy for allowing data force to access their data. This should be deleted when automated access is complete"
+  description = "Temporary policy for allowing data force to access their data. This should be deleted when automated access is completed"
   policy = jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
