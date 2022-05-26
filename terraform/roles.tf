@@ -6,12 +6,14 @@ resource "aws_iam_role" "dp_access_readwrite" {
     Version = "2012-10-17"
     Statement = [
       {
-        Action = "sts:AssumeRole"
-        Effect = "Allow"
-        Sid    = ""
-        Principal = {
-          Service = "ec2.amazonaws.com"
-        }
+        "Effect" : "Allow",
+        "Principal" : {
+          "AWS" : [
+            "arn:aws:iam::296075517832:role/dataplatform-${var.config.environment}-dp-orcid-transformer-service-iam-role",
+            "arn:aws:iam::296075517832:role/ADFS-Developer"
+          ]
+        },
+        "Action" : "sts:AssumeRole"
       },
     ]
   })

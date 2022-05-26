@@ -22,10 +22,11 @@ resource "aws_iam_role" "data_force_control_role" {
 }
 
 resource "aws_iam_policy" "data_force_control_role_policy" {
-  count = var.config["environment"] == "dev" ? 1 : 0
+  count       = var.config["environment"] == "dev" ? 1 : 0
 
-  provider = aws.bucket
-  name     = "rdp-data-force-control-policy"
+  provider    = aws.bucket
+  name        = "rdp-data-force-control-policy"
+  description = "Temporary policy for allowing data force to access their data. This should be deleted when automated access is complete"
   policy = jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [

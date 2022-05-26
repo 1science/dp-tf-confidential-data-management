@@ -16,6 +16,10 @@ if [ ${ENVIRONMENT} == "dev" ]; then
    ACCOUNT_ID="210275200797"
    AWS_ACCOUNT_ALIAS="aws-rt-dataconfidential-nonprod"
    CONFIG_BUCKET="com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
+else
+  ACCOUNT_ID="296075517832"
+  AWS_ACCOUNT_ALIAS="aws-rt-dataconfidential-prod"
+  CONFIG_BUCKET="com-elsevier-rdp-dataconfidential-prod-useast2-1"
 fi
 ##########
 
