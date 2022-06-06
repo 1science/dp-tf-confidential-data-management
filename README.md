@@ -6,9 +6,10 @@ and policies in dev and prod environments.
 ## Login
 
 ```bash
-aws-adfs login --adfs-host federation.reedelsevier.com --region us-east-2 --role-arn  assumed-role/ADFS-Developer/{USERNAME}@science.regn.net --session-duration 14400 --profile dp-dev
+aws-adfs login --adfs-host federation.reedelsevier.com --region us-east-2 --role-arn  assumed-role/ADFS-Developer/{USERNAME}@science.regn.net --session-duration 14400 --profile dp-bucket
+aws-adfs login --adfs-host federation.reedelsevier.com --region us-east-2 --role-arn  assumed-role/ADFS-Developer/{USERNAME}@science.regn.net --session-duration 14400 --profile dp-cluster
 # Choose account aws-rt-dataconfidential-nonprod (dev) or aws-rt-dataconfidential-prod (prod)
-export AWS_PROFILE="dp-test"
+export AWS_PROFILE="dp-bucket" or "dp-cluster"
 ```
 
 ## Terraform plan and apply
