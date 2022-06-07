@@ -22,7 +22,7 @@ resource "aws_iam_role" "data_force_control_role" {
 }
 
 resource "aws_iam_policy" "data_force_control_role_policy" {
-  count       = var.config["environment"] == "dev" ? 1 : 0
+  count = var.config["environment"] == "dev" ? 1 : 0
 
   provider    = aws.bucket
   name        = "rdp-data-force-control-policy"
