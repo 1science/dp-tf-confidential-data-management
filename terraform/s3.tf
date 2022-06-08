@@ -12,6 +12,7 @@ resource "aws_s3_bucket" "dataconfidential" {
 }
 
 resource "aws_s3_bucket_policy" "dataconfidential_policy" {
+  provider = aws.bucket
   bucket = var.config["bucket"]
   policy = var.config["environment"] == "dev" ? file("configurations/dataconfidential-nonprod-policy.json") : file("configurations/dataconfidential-prod-policy.json")
 }
