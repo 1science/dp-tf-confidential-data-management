@@ -17,7 +17,7 @@ if [ ${ENVIRONMENT} == "dev" ]; then
    AWS_ACCOUNT_ALIAS="aws-rt-dataconfidential-nonprod"
    CONFIG_BUCKET="com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
 else
-  ACCOUNT_ID="296075517832"
+  ACCOUNT_ID="831790613400"
   AWS_ACCOUNT_ALIAS="aws-rt-dataconfidential-prod"
   CONFIG_BUCKET="com-elsevier-rdp-dataconfidential-prod-useast2-1"
 fi
@@ -27,7 +27,7 @@ s3_state_prefix=tfstate/${ENVIRONMENT}/${AWS_ACCOUNT_ALIAS}
 
 function terraform_init {
     # cleanup cached stuff
-    # rm -rf .terraform
+    rm -rf .terraform
     terraform init -backend-config="bucket=${CONFIG_BUCKET}" \
       -backend-config="key=$s3_state_prefix-${COMPONENT}.tfstate" \
       -backend-config="acl=bucket-owner-full-control" \
