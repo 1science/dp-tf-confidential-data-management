@@ -3,6 +3,8 @@
 Repo for managing confidential data, roles
 and policies in dev and prod environments.
 
+Wiki: https://elsevier.atlassian.net/wiki/spaces/RDP/pages/119600970030676/Terraform+project+for+confidential+data
+
 ## Login
 
 ```bash
