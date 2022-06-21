@@ -25,5 +25,5 @@ terraform apply out/out.bin
 
 Example with a IAM policy:
 ```bash
-terraform import -var-file=./configurations/dev_config.tfvars.json aws_iam_policy.{ressource_name} {arn}
+terraform import -var-file=./configurations/prod_config.tfvars.json aws_iam_policy.{ressource_name} {arn}
 ```

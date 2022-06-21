@@ -23,18 +23,6 @@
       ]
     },
     {
-      "Sid": "AllowReadWriteAccountsAccessToData",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::210275200797:role/dp-access-readwrite-1"
-      },
-      "Action": "s3:*",
-      "Resource": [
-        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/*",
-        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
-      ]
-    },
-    {
       "Sid": "AllowTransformerAccountsAccessToData",
       "Effect": "Allow",
       "Principal": {

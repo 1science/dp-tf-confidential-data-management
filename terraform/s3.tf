@@ -9,6 +9,7 @@ resource "aws_s3_bucket" "dataconfidential" {
     Environment = var.config["tag_environment"]
     Product     = "Data Platform"
   }
+
 }
 
 resource "aws_s3_bucket_policy" "dataconfidential_policy" {
