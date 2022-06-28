@@ -256,15 +256,19 @@ resource "aws_iam_policy" "data_force_control_role_policy" {
 
 
 resource "aws_iam_role" "patent_access_engineering_village_role" {
-  provider = aws.bucket
-  name     = "dp-patent-access-engineering-village"
+  provider    = aws.bucket
+  name        = "dp-patent-access-engineering-village"
+  description = "Role for accessing patents from the data confidential bucket."
+  tags = {
+    "creator" = "kuyekd"
+  }
   assume_role_policy = jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
       {
         "Effect" : "Allow",
         "Principal" : {
-          "AWS" : "arn:aws:iam::230521890328:root"
+          "AWS" : var.config["environment"] == "dev" ? "arn:aws:iam::868616482097:root" : "arn:aws:iam::230521890328:root"
         },
         "Action" : "sts:AssumeRole",
         "Condition" : {}
@@ -274,8 +278,14 @@ resource "aws_iam_role" "patent_access_engineering_village_role" {
 }
 
 resource "aws_iam_policy" "patent_access_engineering_village_role_policy" {
-  provider = aws.bucket
-  name     = "dp-patent-access-engineering-village"
+  provider    = aws.bucket
+  name        = "dp-patent-access-engineering-village"
+  description = "Policy for controlling access to data confidential bucket for the following patent offices - EU, US, WO. For Engineering Village"
+  tags = {
+    "creator"        = "kuyekd"
+    "customer"       = "Electronic Village"
+    "patent-offices" = "US EU WO"
+  }
   policy = var.config["environment"] == "dev" ? jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
@@ -386,15 +396,17 @@ resource "aws_iam_policy" "patent_access_engineering_village_role_policy" {
 
 
 resource "aws_iam_role" "sccontent_dp" {
-  provider = aws.bucket
-  name     = "sccontent-dp"
+  provider             = aws.bucket
+  name                 = "scontent-dp"
+  description          = "Allows EC2 instances to call AWS services on your behalf."
+  max_session_duration = 43200
   assume_role_policy = jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
       {
         "Effect" : "Allow",
         "Principal" : {
-          "AWS" : "arn:aws:iam::814132467461:role/sccontent-dp-migration-iamrole-prod"
+          "AWS" : var.config["environment"] == "dev" ? "arn:aws:iam::688086236943:role/sccontent-dp-migration-iamrole-cert" : "arn:aws:iam::814132467461:role/sccontent-dp-migration-iamrole-prod"
         },
         "Action" : "sts:AssumeRole"
       }
@@ -405,6 +417,7 @@ resource "aws_iam_role" "sccontent_dp" {
 resource "aws_iam_policy" "sccontent_dp_policy" {
   provider = aws.bucket
   name     = "sc-content-to-dp-confidential"
+
   policy = var.config["environment"] == "dev" ? jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
@@ -466,9 +479,33 @@ resource "aws_iam_policy" "sccontent_dp_policy" {
 
 
 resource "aws_iam_role" "patent_access_entellect" {
-  provider = aws.bucket
-  name     = "dp-patent-access-entellect"
-  assume_role_policy = jsonencode({
+  provider    = aws.bucket
+  name        = "dp-patent-access-entellect"
+  description = "List/get access to all patent offices for Entellect/RCC"
+  tags = {
+    "creator"        = "d.kuyek@elsevier.com"
+    "customer"       = "entellect"
+    "patent-offices" = "all"
+  }
+  assume_role_policy = var.config["environment"] == "dev" ? jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Principal" : {
+          "AWS" : [
+            "arn:aws:iam::290244732740:role/enrichment-services-np-00-docker-entellect-instance-role",
+            "arn:aws:iam::290244732740:role/enrichment-services-np-50-docker-entellect-instance-role",
+            "arn:aws:iam::290244732740:role/ADFS-EnterpriseAdmin",
+            "arn:aws:iam::290244732740:role/enrichment-services-np-01-docker-entellect-instance-role",
+            "arn:aws:iam::290244732740:role/ADFS-Developer",
+            "arn:aws:iam::290244732740:role/enrichment-services-np-99-docker-entellect-instance-role",
+          ]
+        },
+        "Action" : "sts:AssumeRole"
+      }
+    ]
+    }) : jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
       {
@@ -489,8 +526,14 @@ resource "aws_iam_role" "patent_access_entellect" {
 
 
 resource "aws_iam_policy" "patent_access_all" {
-  provider = aws.bucket
-  name     = "dp-patent-access-all"
+  provider    = aws.bucket
+  name        = "dp-patent-access-all"
+  description = "Access to entire patent prefix"
+  tags = {
+    "creator"        = "d.kuyek@elsevier.com"
+    "customer"       = "entellect"
+    "patent-offices" = "all"
+  }
   policy = var.config["environment"] == "dev" ? jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
