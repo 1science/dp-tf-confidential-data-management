@@ -1,7 +1,7 @@
 provider "aws" {
   alias                    = "bucket"
   shared_credentials_files = ["~/.aws/credentials"]
-  profile                  = "nonprod"
+  profile                  = "dp-bucket"
 }
 
 terraform {
