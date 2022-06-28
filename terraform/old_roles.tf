@@ -2,6 +2,7 @@
 resource "aws_iam_role" "data_force_control_role" {
   provider = aws.bucket
   name     = "rdp-data-force-control-role"
+  description = "Temporary role for allowing data force to access their data. This should be deleted when automated access is completed"
   assume_role_policy = jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
@@ -261,6 +262,8 @@ resource "aws_iam_role" "patent_access_engineering_village_role" {
   description = "Role for accessing patents from the data confidential bucket."
   tags = {
     "creator" = "kuyekd"
+    "customer"       = "Engineering Village"
+    "patent-offices" = "US EU WO"
   }
   assume_role_policy = jsonencode({
     "Version" : "2012-10-17",
@@ -397,7 +400,7 @@ resource "aws_iam_policy" "patent_access_engineering_village_role_policy" {
 
 resource "aws_iam_role" "sccontent_dp" {
   provider             = aws.bucket
-  name                 = "scontent-dp"
+  name                 = var.config["environment"] == "dev" ? "scontent-dp" : "sccontent-dp"
   description          = "Allows EC2 instances to call AWS services on your behalf."
   max_session_duration = 43200
   assume_role_policy = jsonencode({
@@ -417,7 +420,7 @@ resource "aws_iam_role" "sccontent_dp" {
 resource "aws_iam_policy" "sccontent_dp_policy" {
   provider = aws.bucket
   name     = "sc-content-to-dp-confidential"
-
+  description = "This policy is used to access dp confidential buckets from the sc-content account."
   policy = var.config["environment"] == "dev" ? jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
