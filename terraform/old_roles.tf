@@ -139,31 +139,31 @@ resource "aws_iam_policy" "data_force_control_role_policy" {
         ]
       }
     ]
-  }) : jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    }) : jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Sid": "AllowUserToSeeBucketListInTheConsole",
-        "Action": [
+        "Sid" : "AllowUserToSeeBucketListInTheConsole",
+        "Action" : [
           "s3:ListAllMyBuckets",
           "s3:GetBucketLocation"
         ],
-        "Effect": "Allow",
-        "Resource": [
+        "Effect" : "Allow",
+        "Resource" : [
           "arn:aws:s3:::*"
         ]
       },
       {
-        "Sid": "VisualEditor0",
-        "Effect": "Allow",
-        "Action": "s3:ListBucket",
-        "Resource": [
+        "Sid" : "VisualEditor0",
+        "Effect" : "Allow",
+        "Action" : "s3:ListBucket",
+        "Resource" : [
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
         ],
-        "Condition": {
-          "StringLike": {
-            "s3:prefix": [
+        "Condition" : {
+          "StringLike" : {
+            "s3:prefix" : [
               "",
               "dp-patent/*",
               "dp-patent",
@@ -180,13 +180,13 @@ resource "aws_iam_policy" "data_force_control_role_policy" {
         }
       },
       {
-        "Sid": "appdata1",
-        "Effect": "Allow",
-        "Action": "s3:ListBucket",
-        "Resource": "arn:aws:s3:::com-elsevier-rdp-applicationdata-prod-useast2-1",
-        "Condition": {
-          "StringLike": {
-            "s3:prefix": [
+        "Sid" : "appdata1",
+        "Effect" : "Allow",
+        "Action" : "s3:ListBucket",
+        "Resource" : "arn:aws:s3:::com-elsevier-rdp-applicationdata-prod-useast2-1",
+        "Condition" : {
+          "StringLike" : {
+            "s3:prefix" : [
               "",
               "dp-patent-harvester-reader/*",
               "dp-patent-harvester-reader"
@@ -195,9 +195,9 @@ resource "aws_iam_policy" "data_force_control_role_policy" {
         }
       },
       {
-        "Sid": "VisualEditor1",
-        "Effect": "Allow",
-        "Action": [
+        "Sid" : "VisualEditor1",
+        "Effect" : "Allow",
+        "Action" : [
           "s3:PutObject",
           "s3:GetObject",
           "s3:ListBucketMultipartUploads",
@@ -207,7 +207,7 @@ resource "aws_iam_policy" "data_force_control_role_policy" {
           "s3:PutObjectAcl",
           "s3:ListMultipartUploadParts"
         ],
-        "Resource": [
+        "Resource" : [
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent",
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/*",
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent",
@@ -229,21 +229,21 @@ resource "aws_iam_policy" "data_force_control_role_policy" {
         ]
       },
       {
-        "Sid": "appdata2",
-        "Effect": "Allow",
-        "Action": [
+        "Sid" : "appdata2",
+        "Effect" : "Allow",
+        "Action" : [
           "s3:GetObject"
         ],
-        "Resource": [
+        "Resource" : [
           "arn:aws:s3:::com-elsevier-rdp-applicationdata-prod-useast2-1/dp-patent-harvester-reader",
           "arn:aws:s3:::com-elsevier-rdp-applicationdata-prod-useast2-1/dp-patent-harvester-reader/*"
         ]
       },
       {
-        "Sid": "AllowNonDPBucektAccess",
-        "Effect": "Allow",
-        "Action": "s3:*",
-        "Resource": [
+        "Sid" : "AllowNonDPBucektAccess",
+        "Effect" : "Allow",
+        "Action" : "s3:*",
+        "Resource" : [
           "arn:aws:s3:::dp-patent",
           "arn:aws:s3:::dp-patent/*",
           "arn:aws:s3:::patent-zip-xml/*",
@@ -259,34 +259,34 @@ resource "aws_iam_role" "patent_access_engineering_village_role" {
   provider = aws.bucket
   name     = "dp-patent-access-engineering-village"
   assume_role_policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Effect": "Allow",
-        "Principal": {
-          "AWS": "arn:aws:iam::230521890328:root"
+        "Effect" : "Allow",
+        "Principal" : {
+          "AWS" : "arn:aws:iam::230521890328:root"
         },
-        "Action": "sts:AssumeRole",
-        "Condition": {}
+        "Action" : "sts:AssumeRole",
+        "Condition" : {}
       }
     ]
   })
 }
 
 resource "aws_iam_policy" "patent_access_engineering_village_role_policy" {
-  provider    = aws.bucket
-  name        = "dp-patent-access-engineering-village"
+  provider = aws.bucket
+  name     = "dp-patent-access-engineering-village"
   policy = var.config["environment"] == "dev" ? jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Sid": "",
-        "Effect": "Allow",
-        "Action": "s3:ListBucket",
-        "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
-        "Condition": {
-          "StringEquals": {
-            "s3:prefix": [
+        "Sid" : "",
+        "Effect" : "Allow",
+        "Action" : "s3:ListBucket",
+        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+        "Condition" : {
+          "StringEquals" : {
+            "s3:prefix" : [
               "",
               "dp-patent",
               "dp-patent/US",
@@ -297,13 +297,13 @@ resource "aws_iam_policy" "patent_access_engineering_village_role_policy" {
         }
       },
       {
-        "Sid": "",
-        "Effect": "Allow",
-        "Action": "s3:ListBucket",
-        "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
-        "Condition": {
-          "StringLike": {
-            "s3:prefix": [
+        "Sid" : "",
+        "Effect" : "Allow",
+        "Action" : "s3:ListBucket",
+        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+        "Condition" : {
+          "StringLike" : {
+            "s3:prefix" : [
               "dp-patent/US/*",
               "dp-patent/EU/*",
               "dp-patent/WO/*"
@@ -312,33 +312,33 @@ resource "aws_iam_policy" "patent_access_engineering_village_role_policy" {
         }
       },
       {
-        "Sid": "",
-        "Effect": "Allow",
-        "Action": "s3:GetBucketLocation",
-        "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
+        "Sid" : "",
+        "Effect" : "Allow",
+        "Action" : "s3:GetBucketLocation",
+        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
       },
       {
-        "Sid": "",
-        "Effect": "Allow",
-        "Action": "s3:GetObject",
-        "Resource": [
+        "Sid" : "",
+        "Effect" : "Allow",
+        "Action" : "s3:GetObject",
+        "Resource" : [
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/US/*",
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/EU/*",
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/WO/*"
         ]
       }
     ]
-  }) : jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    }) : jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Sid": "",
-        "Effect": "Allow",
-        "Action": "s3:ListBucket",
-        "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
-        "Condition": {
-          "StringEquals": {
-            "s3:prefix": [
+        "Sid" : "",
+        "Effect" : "Allow",
+        "Action" : "s3:ListBucket",
+        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
+        "Condition" : {
+          "StringEquals" : {
+            "s3:prefix" : [
               "",
               "dp-patent",
               "dp-patent/",
@@ -350,13 +350,13 @@ resource "aws_iam_policy" "patent_access_engineering_village_role_policy" {
         }
       },
       {
-        "Sid": "",
-        "Effect": "Allow",
-        "Action": "s3:ListBucket",
-        "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
-        "Condition": {
-          "StringLike": {
-            "s3:prefix": [
+        "Sid" : "",
+        "Effect" : "Allow",
+        "Action" : "s3:ListBucket",
+        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
+        "Condition" : {
+          "StringLike" : {
+            "s3:prefix" : [
               "dp-patent/US/*",
               "dp-patent/EP/*",
               "dp-patent/WO/*"
@@ -365,16 +365,16 @@ resource "aws_iam_policy" "patent_access_engineering_village_role_policy" {
         }
       },
       {
-        "Sid": "",
-        "Effect": "Allow",
-        "Action": "s3:GetBucketLocation",
-        "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
+        "Sid" : "",
+        "Effect" : "Allow",
+        "Action" : "s3:GetBucketLocation",
+        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
       },
       {
-        "Sid": "",
-        "Effect": "Allow",
-        "Action": "s3:GetObject",
-        "Resource": [
+        "Sid" : "",
+        "Effect" : "Allow",
+        "Action" : "s3:GetObject",
+        "Resource" : [
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/US/*",
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/EP/*",
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/WO/*"
@@ -389,73 +389,73 @@ resource "aws_iam_role" "sccontent_dp" {
   provider = aws.bucket
   name     = "sccontent-dp"
   assume_role_policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Effect": "Allow",
-        "Principal": {
-          "AWS": "arn:aws:iam::814132467461:role/sccontent-dp-migration-iamrole-prod"
+        "Effect" : "Allow",
+        "Principal" : {
+          "AWS" : "arn:aws:iam::814132467461:role/sccontent-dp-migration-iamrole-prod"
         },
-        "Action": "sts:AssumeRole"
+        "Action" : "sts:AssumeRole"
       }
     ]
   })
 }
 
 resource "aws_iam_policy" "sccontent_dp_policy" {
-  provider    = aws.bucket
-  name        = "sc-content-to-dp-confidential"
+  provider = aws.bucket
+  name     = "sc-content-to-dp-confidential"
   policy = var.config["environment"] == "dev" ? jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Effect": "Allow",
-        "Action": [
+        "Effect" : "Allow",
+        "Action" : [
           "s3:List*",
           "s3:Get*",
           "s3:PutObject",
           "s3:PutObjectAcl"
         ],
-        "Resource": [
+        "Resource" : [
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-orcid/*"
         ]
       },
       {
-        "Effect": "Allow",
-        "Action": [
+        "Effect" : "Allow",
+        "Action" : [
           "s3:List*",
           "s3:Get*"
         ],
-        "Resource": [
+        "Resource" : [
           "arn:aws:s3:::sccontent-orcid-xml-cert",
           "arn:aws:s3:::sccontent-orcid-xml-cert/*"
         ]
       }
     ]
-  }) : jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    }) : jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Effect": "Allow",
-        "Action": [
+        "Effect" : "Allow",
+        "Action" : [
           "s3:List*",
           "s3:Get*",
           "s3:PutObject",
           "s3:PutObjectAcl"
         ],
-        "Resource": [
+        "Resource" : [
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-orcid/*"
         ]
       },
       {
-        "Effect": "Allow",
-        "Action": [
+        "Effect" : "Allow",
+        "Action" : [
           "s3:List*",
           "s3:Get*"
         ],
-        "Resource": [
+        "Resource" : [
           "arn:aws:s3:::sccontent-orcid-xml-prod",
           "arn:aws:s3:::sccontent-orcid-xml-prod/*"
         ]
@@ -469,19 +469,19 @@ resource "aws_iam_role" "patent_access_entellect" {
   provider = aws.bucket
   name     = "dp-patent-access-entellect"
   assume_role_policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Effect": "Allow",
-        "Principal": {
-          "AWS": [
+        "Effect" : "Allow",
+        "Principal" : {
+          "AWS" : [
             "arn:aws:iam::511696228681:role/ADFS-Developer",
             "arn:aws:iam::511696228681:role/ADFS-EnterpriseAdmin",
             "arn:aws:iam::511696228681:role/enrichment-services-prod-00-docker-entellect-instance-role",
             "arn:aws:iam::511696228681:role/enrichment-services-prod-01-docker-entellect-instance-role"
           ]
         },
-        "Action": "sts:AssumeRole"
+        "Action" : "sts:AssumeRole"
       }
     ]
   })
@@ -489,25 +489,25 @@ resource "aws_iam_role" "patent_access_entellect" {
 
 
 resource "aws_iam_policy" "patent_access_all" {
-  provider    = aws.bucket
-  name        = "dp-patent-access-all"
+  provider = aws.bucket
+  name     = "dp-patent-access-all"
   policy = var.config["environment"] == "dev" ? jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Sid": "getbucketlocation",
-        "Effect": "Allow",
-        "Action": "s3:GetBucketLocation",
-        "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
+        "Sid" : "getbucketlocation",
+        "Effect" : "Allow",
+        "Action" : "s3:GetBucketLocation",
+        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
       },
       {
-        "Sid": "listbucketexact",
-        "Effect": "Allow",
-        "Action": "s3:ListBucket",
-        "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
-        "Condition": {
-          "StringEquals": {
-            "s3:prefix": [
+        "Sid" : "listbucketexact",
+        "Effect" : "Allow",
+        "Action" : "s3:ListBucket",
+        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+        "Condition" : {
+          "StringEquals" : {
+            "s3:prefix" : [
               "",
               "dp-patent"
             ]
@@ -515,40 +515,40 @@ resource "aws_iam_policy" "patent_access_all" {
         }
       },
       {
-        "Sid": "listbucketlike",
-        "Effect": "Allow",
-        "Action": "s3:ListBucket",
-        "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
-        "Condition": {
-          "StringLike": {
-            "s3:prefix": "dp-patent/*"
+        "Sid" : "listbucketlike",
+        "Effect" : "Allow",
+        "Action" : "s3:ListBucket",
+        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+        "Condition" : {
+          "StringLike" : {
+            "s3:prefix" : "dp-patent/*"
           }
         }
       },
       {
-        "Sid": "getobjectlike",
-        "Effect": "Allow",
-        "Action": "s3:GetObject",
-        "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/*"
+        "Sid" : "getobjectlike",
+        "Effect" : "Allow",
+        "Action" : "s3:GetObject",
+        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/*"
       }
     ]
-  }) : jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    }) : jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Sid": "getbucketlocation",
-        "Effect": "Allow",
-        "Action": "s3:GetBucketLocation",
-        "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
+        "Sid" : "getbucketlocation",
+        "Effect" : "Allow",
+        "Action" : "s3:GetBucketLocation",
+        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
       },
       {
-        "Sid": "listbucketexact",
-        "Effect": "Allow",
-        "Action": "s3:ListBucket",
-        "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
-        "Condition": {
-          "StringEquals": {
-            "s3:prefix": [
+        "Sid" : "listbucketexact",
+        "Effect" : "Allow",
+        "Action" : "s3:ListBucket",
+        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
+        "Condition" : {
+          "StringEquals" : {
+            "s3:prefix" : [
               "",
               "dp-patent"
             ]
@@ -556,21 +556,21 @@ resource "aws_iam_policy" "patent_access_all" {
         }
       },
       {
-        "Sid": "listbucketlike",
-        "Effect": "Allow",
-        "Action": "s3:ListBucket",
-        "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
-        "Condition": {
-          "StringLike": {
-            "s3:prefix": "dp-patent/*"
+        "Sid" : "listbucketlike",
+        "Effect" : "Allow",
+        "Action" : "s3:ListBucket",
+        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
+        "Condition" : {
+          "StringLike" : {
+            "s3:prefix" : "dp-patent/*"
           }
         }
       },
       {
-        "Sid": "getobjectlike",
-        "Effect": "Allow",
-        "Action": "s3:GetObject",
-        "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/*"
+        "Sid" : "getobjectlike",
+        "Effect" : "Allow",
+        "Action" : "s3:GetObject",
+        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/*"
       }
     ]
   })

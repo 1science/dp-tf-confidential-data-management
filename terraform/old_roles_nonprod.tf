@@ -5,15 +5,15 @@ resource "aws_iam_role" "edm_access_nonprod_role" {
   provider = aws.bucket
   name     = "dp-edm-access-nonprod"
   assume_role_policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Effect": "Allow",
-        "Principal": {
-          "AWS": "arn:aws:iam::296075517832:root"
+        "Effect" : "Allow",
+        "Principal" : {
+          "AWS" : "arn:aws:iam::296075517832:root"
         },
-        "Action": "sts:AssumeRole",
-        "Condition": {}
+        "Action" : "sts:AssumeRole",
+        "Condition" : {}
       }
     ]
   })
@@ -25,16 +25,16 @@ resource "aws_iam_policy" "edm_access_nonprod_role_policy" {
   name        = "dp-edm-access"
   description = "Person Registry policy"
   policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Sid": "",
-        "Effect": "Allow",
-        "Action": "s3:ListBucket",
-        "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
-        "Condition": {
-          "StringEquals": {
-            "s3:prefix": [
+        "Sid" : "",
+        "Effect" : "Allow",
+        "Action" : "s3:ListBucket",
+        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+        "Condition" : {
+          "StringEquals" : {
+            "s3:prefix" : [
               "",
               "dp-patent-edm",
               "dp-patent-edm/",
@@ -45,13 +45,13 @@ resource "aws_iam_policy" "edm_access_nonprod_role_policy" {
         }
       },
       {
-        "Sid": "",
-        "Effect": "Allow",
-        "Action": "s3:ListBucket",
-        "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
-        "Condition": {
-          "StringLike": {
-            "s3:prefix": [
+        "Sid" : "",
+        "Effect" : "Allow",
+        "Action" : "s3:ListBucket",
+        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+        "Condition" : {
+          "StringLike" : {
+            "s3:prefix" : [
               "dp-patent-edm/*",
               "dp-orcid-edm/*"
             ]
@@ -59,16 +59,16 @@ resource "aws_iam_policy" "edm_access_nonprod_role_policy" {
         }
       },
       {
-        "Sid": "",
-        "Effect": "Allow",
-        "Action": "s3:GetBucketLocation",
-        "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
+        "Sid" : "",
+        "Effect" : "Allow",
+        "Action" : "s3:GetBucketLocation",
+        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
       },
       {
-        "Sid": "",
-        "Effect": "Allow",
-        "Action": "s3:GetObject",
-        "Resource": [
+        "Sid" : "",
+        "Effect" : "Allow",
+        "Action" : "s3:GetObject",
+        "Resource" : [
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent-edm/*",
           "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-orcid-edm/*"
         ]

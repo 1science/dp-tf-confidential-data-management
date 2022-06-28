@@ -6,10 +6,10 @@ resource "aws_iam_role" "dp_access_transformer" {
     Version = "2012-10-17"
     Statement = [
       {
-        "Effect": "Allow"
-        "Principal": { "AWS": var.config["dp_access_read_write_arn"] }
-        "Action": "sts:AssumeRole"
-        "Condition": {}
+        "Effect" : "Allow"
+        "Principal" : { "AWS" : var.config["dp_access_read_write_arn"] }
+        "Action" : "sts:AssumeRole"
+        "Condition" : {}
       }
     ]
   })
