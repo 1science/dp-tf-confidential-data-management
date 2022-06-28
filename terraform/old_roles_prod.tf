@@ -21,7 +21,7 @@ resource "aws_iam_role" "edm_access_prod_role" {
 
 
 resource "aws_iam_policy" "edm_access_prod_role_policy" {
-  count = var.config["environment"] == "dev" ? 1 : 0
+  count = var.config["environment"] == "dev" ? 0 : 1
 
   name        = "dp-edm-access"
   description = "Person Registry policy"
@@ -99,7 +99,7 @@ resource "aws_iam_role" "exporter_iamrole_dataconfidential" {
 }
 
 resource "aws_iam_policy" "exporter_iamrole_dataconfidential_policy" {
-  count = var.config["environment"] == "dev" ? 1 : 0
+  count = var.config["environment"] == "dev" ? 0 : 1
 
   name        = "bos-exporter-dataconfidential"
   policy = jsonencode({
@@ -180,7 +180,7 @@ resource "aws_iam_role" "cat_control_role" {
 
 
 resource "aws_iam_policy" "cat_control_role_policy" {
-  count = var.config["environment"] == "dev" ? 1 : 0
+  count = var.config["environment"] == "dev" ? 0 : 1
 
   name        = "rdp-cat-control-policy"
   policy = jsonencode({
@@ -274,7 +274,7 @@ resource "aws_iam_role" "sccontent_dp_patent_prod" {
 
 
 resource "aws_iam_policy" "sccontent_dp_patent_prod_policy" {
-  count = var.config["environment"] == "dev" ? 1 : 0
+  count = var.config["environment"] == "dev" ? 0 : 1
 
   name        = "sccontent-dp-patent"
   policy = jsonencode({
@@ -321,7 +321,7 @@ resource "aws_iam_role" "univentio_patents_data_load_1" {
 
 
 resource "aws_iam_policy" "univentio_patents_data_load_1_policy" {
-  count = var.config["environment"] == "dev" ? 1 : 0
+  count = var.config["environment"] == "dev" ? 0 : 1
 
   name        = "SnowFamilyS3Import-Univentio-patents-data-load-1-policy"
   policy = jsonencode({
