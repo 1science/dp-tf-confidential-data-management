@@ -283,7 +283,7 @@ resource "aws_iam_role" "patent_access_engineering_village_role" {
 resource "aws_iam_policy" "patent_access_engineering_village_role_policy" {
   provider    = aws.bucket
   name        = "dp-patent-access-engineering-village"
-  description = "For accessing certain patent subfolders in bucket com-elsevier-rdp-dataconfidential-prod-useast2-1 for engineering village"
+  description = var.config["environment"] == "dev" ? "Policy for controlling access to data confidential bucket for the following patent offices - EU, US, WO. For Engineering Village" : "For accessing certain patent subfolders in bucket com-elsevier-rdp-dataconfidential-prod-useast2-1 for engineering village"
   tags = {
     "creator"        = "kuyekd"
     "customer"       = "Electronic Village"
@@ -419,8 +419,8 @@ resource "aws_iam_role" "sccontent_dp" {
 
 resource "aws_iam_policy" "sccontent_dp_policy" {
   provider = aws.bucket
-  name     = "sc-content-to-dp-confidential"
-  description = "This policy is used to access dp confidential buckets from the sc-content account."
+  name     = var.config["environment"] == "dev" ? "sccontent-dp" : "sc-content-to-dp-confidential"
+  description = var.config["environment"] == "dev" ? null : "This policy is used to access dp confidential buckets from the sc-content account."
   policy = var.config["environment"] == "dev" ? jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
@@ -531,7 +531,7 @@ resource "aws_iam_role" "patent_access_entellect" {
 resource "aws_iam_policy" "patent_access_all" {
   provider    = aws.bucket
   name        = "dp-patent-access-all"
-  description = "For accessing, via list and get, all of the patent offices"
+  description = var.config["environment"] == "dev" ? "Access to entire patent prefix" : "For accessing, via list and get, all of the patent offices"
   tags = {
     "creator"        = "d.kuyek@elsevier.com"
     "customer"       = "entellect"
