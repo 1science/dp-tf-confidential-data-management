@@ -400,6 +400,7 @@ resource "aws_iam_policy" "patent_access_engineering_village_role_policy" {
 
 resource "aws_iam_role" "sccontent_dp" {
   provider             = aws.bucket
+  # FIXME: scontent in nonprod and sccontent in prod????
   name                 = var.config["environment"] == "dev" ? "scontent-dp" : "sccontent-dp"
   description          = "Allows EC2 instances to call AWS services on your behalf."
   max_session_duration = 43200
