@@ -1,7 +1,7 @@
 
 resource "aws_iam_role" "data_force_control_role" {
-  provider = aws.bucket
-  name     = "rdp-data-force-control-role"
+  provider    = aws.bucket
+  name        = "rdp-data-force-control-role"
   description = "Temporary role for allowing data force to access their data. This should be deleted when automated access is completed"
   assume_role_policy = jsonencode({
     "Version" : "2012-10-17",
@@ -261,7 +261,7 @@ resource "aws_iam_role" "patent_access_engineering_village_role" {
   name        = "dp-patent-access-engineering-village"
   description = "Role for accessing patents from the data confidential bucket."
   tags = {
-    "creator" = "kuyekd"
+    "creator"        = "kuyekd"
     "customer"       = "Engineering Village"
     "patent-offices" = "US EU WO"
   }
@@ -399,7 +399,7 @@ resource "aws_iam_policy" "patent_access_engineering_village_role_policy" {
 
 
 resource "aws_iam_role" "sccontent_dp" {
-  provider             = aws.bucket
+  provider = aws.bucket
   # FIXME: scontent in nonprod and sccontent in prod????
   name                 = var.config["environment"] == "dev" ? "scontent-dp" : "sccontent-dp"
   description          = "Allows EC2 instances to call AWS services on your behalf."
@@ -419,8 +419,8 @@ resource "aws_iam_role" "sccontent_dp" {
 }
 
 resource "aws_iam_policy" "sccontent_dp_policy" {
-  provider = aws.bucket
-  name     = var.config["environment"] == "dev" ? "sccontent-dp" : "sc-content-to-dp-confidential"
+  provider    = aws.bucket
+  name        = var.config["environment"] == "dev" ? "sccontent-dp" : "sc-content-to-dp-confidential"
   description = var.config["environment"] == "dev" ? null : "This policy is used to access dp confidential buckets from the sc-content account."
   policy = var.config["environment"] == "dev" ? jsonencode({
     "Version" : "2012-10-17",

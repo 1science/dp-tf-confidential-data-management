@@ -1,8 +1,8 @@
 
 resource "aws_iam_role" "edm_access_prod_role" {
-  count = var.config["environment"] == "dev" ? 0 : 1
+  count       = var.config["environment"] == "dev" ? 0 : 1
   description = "A role for accessing production EDM data from services in the production account, 296075517832"
-  tags                  = {
+  tags = {
     "contact" = "datacastor@elsevier.com"
   }
   provider = aws.bucket
@@ -28,7 +28,7 @@ resource "aws_iam_policy" "edm_access_prod_role_policy" {
 
   name        = "dp-edm-access"
   description = "For access to EDM data for production services"
-  tags        = {
+  tags = {
     "contact" = "datacastor@elsevier.com"
   }
   policy = jsonencode({
@@ -86,7 +86,7 @@ resource "aws_iam_policy" "edm_access_prod_role_policy" {
 
 resource "aws_iam_role" "exporter_iamrole_dataconfidential" {
   count = var.config["environment"] == "dev" ? 0 : 1
-  tags                  = {
+  tags = {
     "Contact"           = "aaws-rt-dataconfidential-prod@ets-cloud.com"
     "CostCode"          = "20882"
     "Description"       = "dataset_publisher"
@@ -115,50 +115,50 @@ resource "aws_iam_role" "exporter_iamrole_dataconfidential" {
   inline_policy {
     name = "bos-exporter-dataconfidential"
     policy = jsonencode({
-      "Version": "2012-10-17",
-      "Statement": [
+      "Version" : "2012-10-17",
+      "Statement" : [
         {
-          "Effect": "Allow",
-          "Action": [
+          "Effect" : "Allow",
+          "Action" : [
             "s3:GetObject",
             "s3:GetBucketLocation"
           ],
-          "Resource": [
+          "Resource" : [
             "arn:aws:s3:::*"
           ]
         },
         {
-          "Effect": "Allow",
-          "Action": [
+          "Effect" : "Allow",
+          "Action" : [
             "sqs:*"
           ],
-          "Resource": [
+          "Resource" : [
             "arn:aws:sqs:us-east-2:831790613400:metadataexporter-dataconfidential"
           ]
         },
         {
-          "Effect": "Allow",
-          "Action": [
+          "Effect" : "Allow",
+          "Action" : [
             "logs:CreateLogGroup",
             "logs:CreateLogStream",
             "logs:PutLogEvents"
           ],
-          "Resource": "arn:aws:logs:*:*:*"
+          "Resource" : "arn:aws:logs:*:*:*"
         },
         {
-          "Effect": "Allow",
-          "Action": [
+          "Effect" : "Allow",
+          "Action" : [
             "ec2:*"
           ],
-          "Resource": "*"
+          "Resource" : "*"
         },
         {
-          "Effect": "Allow",
-          "Action": [
+          "Effect" : "Allow",
+          "Action" : [
             "ec2:*",
             "kms:Decrypt"
           ],
-          "Resource": "*"
+          "Resource" : "*"
         }
       ]
     })
@@ -166,10 +166,10 @@ resource "aws_iam_role" "exporter_iamrole_dataconfidential" {
 }
 
 resource "aws_iam_role" "cat_control_role" {
-  count = var.config["environment"] == "dev" ? 0 : 1
-  description           = "Allows S3 to call AWS services on your behalf."
-  provider = aws.bucket
-  name     = "rdp-cat-control-role"
+  count       = var.config["environment"] == "dev" ? 0 : 1
+  description = "Allows S3 to call AWS services on your behalf."
+  provider    = aws.bucket
+  name        = "rdp-cat-control-role"
   assume_role_policy = jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
