@@ -86,6 +86,18 @@
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/*",
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
       ]
+    },
+    {
+      "Sid": "AllowWriterAccountsAccessToData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/dp-access-writer-1"
+      },
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
+      ]
     }
   ]
 }
