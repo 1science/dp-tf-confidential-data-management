@@ -76,7 +76,7 @@
       }
     },
     {
-      "Sid": "AllowTransformerAccountsAccessToData",
+      "Sid": "AllowOrcidTransformerAccountsAccessToData",
       "Effect": "Allow",
       "Principal": {
         "AWS": "arn:aws:iam::831790613400:role/dp-access-transformer-1"
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "Sid": "AllowWriterAccountsAccessToData",
+      "Sid": "AllowOrcidWriterAccountsAccessToData",
       "Effect": "Allow",
       "Principal": {
         "AWS": "arn:aws:iam::831790613400:role/dp-access-writer-1"
@@ -100,10 +100,46 @@
       ]
     },
     {
-      "Sid": "AllowReaderAccountsAccessToData",
+      "Sid": "AllowOrcidReaderAccountsAccessToData",
       "Effect": "Allow",
       "Principal": {
         "AWS": "arn:aws:iam::831790613400:role/dp-access-reader-1"
+      },
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
+      ]
+    },
+    {
+      "Sid": "AllowPatentTransformerAccountsAccessToData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/dp-access-transformer-2"
+      },
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
+      ]
+    },
+    {
+      "Sid": "AllowPatentWriterAccountsAccessToData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/dp-access-writer-2"
+      },
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
+      ]
+    },
+    {
+      "Sid": "AllowPatentReaderAccountsAccessToData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/dp-access-reader-2"
       },
       "Action": "s3:*",
       "Resource": [
