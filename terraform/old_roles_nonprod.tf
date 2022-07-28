@@ -2,7 +2,7 @@
 resource "aws_iam_role" "edm_access_nonprod_role" {
   count = var.config["environment"] == "dev" ? 1 : 0
 
-  description = "For accessing EDM data from non-prod DP account, 023759106857"
+  description = "For accessing EDM data from non-prod DP account for the Person Registry"
   tags = {
     "contact" = "datacastor@elsevier.com"
   }
