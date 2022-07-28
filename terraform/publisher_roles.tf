@@ -9,7 +9,7 @@ resource "aws_iam_role" "dp_access_orcid_transformer" {
     Statement = [
       {
         "Effect" : "Allow"
-        "Principal" : { "AWS" : var.config["dp_access_orcid_transformer_arn"] }
+        "Principal" : { "AWS" : var.config["dp_orcid_transformer_service_role_arn"] }
         "Action" : "sts:AssumeRole"
         "Condition" : {}
       }
@@ -25,7 +25,7 @@ resource "aws_iam_role" "dp_access_orcid_writer" {
     Statement = [
       {
         "Effect" : "Allow"
-        "Principal" : { "AWS" : var.config["dp_access_orcid_writer_arn"] }
+        "Principal" : { "AWS" : var.config["dp_orcid_writer_service_role_arn"] }
         "Action" : "sts:AssumeRole"
         "Condition" : {}
       }
@@ -41,7 +41,7 @@ resource "aws_iam_role" "dp_access_orcid_reader" {
     Statement = [
       {
         "Effect" : "Allow"
-        "Principal" : { "AWS" : var.config["dp_access_orcid_reader_arn"] }
+        "Principal" : { "AWS" : var.config["dp_orcid_reader_service_role_arn"] }
         "Action" : "sts:AssumeRole"
         "Condition" : {}
       }
@@ -74,7 +74,7 @@ resource "aws_iam_role" "dp_access_patent_transformer" {
     Statement = [
       {
         "Effect" : "Allow"
-        "Principal" : { "AWS" : var.config["dp_access_patent_transformer_arn"] }
+        "Principal" : { "AWS" : var.config["dp_patent_transformer_service_role_arn"] }
         "Action" : "sts:AssumeRole"
         "Condition" : {}
       }
@@ -90,7 +90,7 @@ resource "aws_iam_role" "dp_access_patent_writer" {
     Statement = [
       {
         "Effect" : "Allow"
-        "Principal" : { "AWS" : var.config["dp_access_patent_writer_arn"] }
+        "Principal" : { "AWS" : var.config["dp_patent_writer_service_role_arn"] }
         "Action" : "sts:AssumeRole"
         "Condition" : {}
       }
@@ -106,7 +106,7 @@ resource "aws_iam_role" "dp_access_patent_reader" {
     Statement = [
       {
         "Effect" : "Allow"
-        "Principal" : { "AWS" : var.config["dp_access_patent_reader_arn"] }
+        "Principal" : { "AWS" : var.config["dp_patent_reader_service_role_arn"] }
         "Action" : "sts:AssumeRole"
         "Condition" : {}
       }
