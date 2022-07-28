@@ -186,7 +186,7 @@
       ]
     },
     {
-      "Sid": "RDPDataForceControlVisualEditor0",
+      "Sid": "DataForceListBucket1",
       "Effect": "Allow",
       "Principal": {
         "AWS": "arn:aws:iam::831790613400:role/rdp-data-force-control-role"
@@ -214,17 +214,13 @@
       }
     },
     {
-      "Sid": "RDPDataForceControlVisualEditor1",
+      "Sid": "DataForceGetObject",
       "Effect": "Allow",
       "Principal": {
         "AWS": "arn:aws:iam::831790613400:role/rdp-data-force-control-role"
       },
       "Action": [
-        "s3:PutObject",
         "s3:GetObject",
-        "s3:AbortMultipartUpload",
-        "s3:DeleteObject",
-        "s3:PutObjectAcl",
         "s3:ListMultipartUploadParts"
       ],
       "Resource": [
