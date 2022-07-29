@@ -58,24 +58,6 @@
       }
     },
     {
-      "Sid": "InventoryAndAnalyticsExamplePolicy",
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "s3.amazonaws.com"
-      },
-      "Action": "s3:PutObject",
-      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/*",
-      "Condition": {
-        "StringEquals": {
-          "s3:x-amz-acl": "bucket-owner-full-control",
-          "aws:SourceAccount": "831790613400"
-        },
-        "ArnLike": {
-          "aws:SourceArn": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
-        }
-      }
-    },
-    {
       "Sid": "AllowOrcidTransformerAccountsAccessToData",
       "Effect": "Allow",
       "Principal": {
@@ -146,6 +128,345 @@
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/*",
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
       ]
+    },
+    {
+      "Sid": "DPPatentEVListBucket1",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/dp-patent-access-engineering-village"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
+      "Condition": {
+        "StringEquals": {
+          "s3:prefix": [
+            "",
+            "dp-patent",
+            "dp-patent/",
+            "dp-patent/US",
+            "dp-patent/EP",
+            "dp-patent/WO"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "DPPatentEVListBucket2",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/dp-patent-access-engineering-village"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": [
+            "dp-patent/US/*",
+            "dp-patent/EP/*",
+            "dp-patent/WO/*"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "DPPatentEVGetBucketLocation",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/dp-patent-access-engineering-village"
+      },
+      "Action": "s3:GetBucketLocation",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
+    },
+    {
+      "Sid": "DPPatentEVGetObject",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/dp-patent-access-engineering-village"
+      },
+      "Action": "s3:GetObject",
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/US/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/EP/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/WO/*"
+      ]
+    },
+    {
+      "Sid": "RDPDataForceControlVisualEditor0",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/rdp-data-force-control-role"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
+      ],
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": [
+            "",
+            "dp-patent/*",
+            "dp-patent",
+            "dp-orcid/*",
+            "dp-orcid",
+            "dp-patent-edm",
+            "dp-patent-edm/*",
+            "dp-orcid-edm",
+            "dp-orcid-edm/*",
+            "com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent",
+            "com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/*"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "RDPDataForceControlVisualEditor1",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/rdp-data-force-control-role"
+      },
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:AbortMultipartUpload",
+        "s3:DeleteObject",
+        "s3:PutObjectAcl",
+        "s3:ListMultipartUploadParts"
+      ],
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-orcid",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-orcid/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-orcid-edm",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-orcid-edm/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent-edm",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent-edm/*"
+      ]
+    },
+    {
+      "Sid": "RDPDataForceControlVisualEditor2",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/rdp-data-force-control-role"
+      },
+      "Action": [
+        "s3:ListBucketMultipartUploads",
+        "s3:GetBucketLocation"
+      ],
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
+    },
+    {
+      "Sid": "AllowSccontentDP",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/sccontent-dp"
+      },
+      "Action": [
+        "s3:List*",
+        "s3:Get*",
+        "s3:PutObject",
+        "s3:PutObjectAcl"
+      ],
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-orcid/*"
+      ]
+    },
+    {
+      "Sid": "DPPatentAccessEntellectBucketLocation",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/dp-patent-access-entellect"
+      },
+      "Action": "s3:GetBucketLocation",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
+    },
+    {
+      "Sid": "DPPatentAccessEntellectListBucket",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/dp-patent-access-entellect"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
+      "Condition": {
+        "StringEquals": {
+          "s3:prefix": [
+            "",
+            "dp-patent"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "DPPatentAccessEntellectListBucket2",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/dp-patent-access-entellect"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": "dp-patent/*"
+        }
+      }
+    },
+    {
+      "Sid": "DPPatentAccessEntellectGetObject",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/dp-patent-access-entellect"
+      },
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/*"
+    },
+    {
+      "Sid": "DPEDMAccessProdListBucket1",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/dp-edm-access-prod"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
+      "Condition": {
+        "StringEquals": {
+          "s3:prefix": [
+            "",
+            "dp-patent-edm",
+            "dp-patent-edm/",
+            "dp-orcid-edm",
+            "dp-orcid-edm/"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "DPEDMAccessProdListBucket2",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/dp-edm-access-prod"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": [
+            "dp-patent-edm/*",
+            "dp-orcid-edm/*"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "DPEDMAccessProdGetBucketLocation",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/dp-edm-access-prod"
+      },
+      "Action": "s3:GetBucketLocation",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
+    },
+    {
+      "Sid": "DPEDMAccessProdGetObject",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/dp-edm-access-prod"
+      },
+      "Action": "s3:GetObject",
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent-edm/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-orcid-edm/*"
+      ]
+    },
+    {
+      "Sid": "RdpCATControlListBucketAccess",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/rdp-cat-control-role"
+      },
+      "Action": [
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
+      ],
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": [
+            "dp-patent/*",
+            "dp-patent",
+            "inventory",
+            "inventory/*"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "RdpCATControlReadAccess2",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/rdp-cat-control-role"
+      },
+      "Action": [
+        "s3:ListBucketMultipartUploads",
+        "s3:GetBucketLocation"
+      ],
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
+    },
+    {
+      "Sid": "SCContentDPPatentProdAccess",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/sccontent-dp-patent-prod"
+      },
+      "Action": [
+        "s3:List*",
+        "s3:Get*",
+        "s3:PutObject",
+        "s3:PutObjectAcl"
+      ],
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/*"
+      ]
+    },
+    {
+      "Sid": "SnowFamilyS3ImportAccess",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/service-role/SnowFamilyS3Import-Univentio-patents-data-load-1"
+      },
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetBucketPolicy",
+        "s3:GetBucketLocation",
+        "s3:ListBucketMultipartUploads",
+        "s3:ListBucket",
+        "s3:PutObject",
+        "s3:AbortMultipartUpload",
+        "s3:ListMultipartUploadParts",
+        "s3:PutObjectAcl",
+        "s3:GetObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/*"
+      ]
+    },
+    {
+      "Sid": "SnowFamilyS3ImportAccess2",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/service-role/SnowFamilyS3Import-Univentio-patents-data-load-1"
+      },
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetBucketPolicy",
+        "s3:GetBucketLocation",
+        "s3:ListBucketMultipartUploads"
+      ],
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
     }
   ]
 }

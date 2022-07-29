@@ -22,68 +22,6 @@ resource "aws_iam_role" "edm_access_prod_role" {
   })
 }
 
-
-resource "aws_iam_policy" "edm_access_prod_role_policy" {
-  count = var.config["environment"] == "dev" ? 0 : 1
-
-  name        = "dp-edm-access"
-  description = "For access to EDM data for production services"
-  tags = {
-    "contact" = "datacastor@elsevier.com"
-  }
-  policy = jsonencode({
-    "Version" : "2012-10-17",
-    "Statement" : [
-      {
-        "Sid" : "",
-        "Effect" : "Allow",
-        "Action" : "s3:ListBucket",
-        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
-        "Condition" : {
-          "StringEquals" : {
-            "s3:prefix" : [
-              "",
-              "dp-patent-edm",
-              "dp-patent-edm/",
-              "dp-orcid-edm",
-              "dp-orcid-edm/"
-            ]
-          }
-        }
-      },
-      {
-        "Sid" : "",
-        "Effect" : "Allow",
-        "Action" : "s3:ListBucket",
-        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
-        "Condition" : {
-          "StringLike" : {
-            "s3:prefix" : [
-              "dp-patent-edm/*",
-              "dp-orcid-edm/*"
-            ]
-          }
-        }
-      },
-      {
-        "Sid" : "",
-        "Effect" : "Allow",
-        "Action" : "s3:GetBucketLocation",
-        "Resource" : "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
-      },
-      {
-        "Sid" : "",
-        "Effect" : "Allow",
-        "Action" : "s3:GetObject",
-        "Resource" : [
-          "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent-edm/*",
-          "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-orcid-edm/*"
-        ]
-      }
-    ]
-  })
-}
-
 resource "aws_iam_role" "exporter_iamrole_dataconfidential" {
   count = var.config["environment"] == "dev" ? 0 : 1
   tags = {
@@ -191,80 +129,6 @@ resource "aws_iam_role" "cat_control_role" {
   })
 }
 
-
-resource "aws_iam_policy" "cat_control_role_policy" {
-  count = var.config["environment"] == "dev" ? 0 : 1
-
-  name = "rdp-cat-control-policy"
-  policy = jsonencode({
-    "Version" : "2012-10-17",
-    "Statement" : [
-      {
-        "Sid" : "ListBucketAccess",
-        "Effect" : "Allow",
-        "Action" : [
-          "s3:ListBucket",
-          "s3:GetBucketLocation"
-        ],
-        "Resource" : [
-          "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
-          "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
-        ],
-        "Condition" : {
-          "StringLike" : {
-            "s3:prefix" : [
-              "dp-patent/*",
-              "dp-patent",
-              "inventory",
-              "inventory/*"
-            ]
-          }
-        }
-      },
-      {
-        "Sid" : "ListInventoryBucketAccess",
-        "Effect" : "Allow",
-        "Action" : [
-          "s3:ListBucket",
-          "s3:GetBucketLocation"
-        ],
-        "Resource" : [
-          "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1-inventory"
-        ],
-        "Condition" : {
-          "StringLike" : {
-            "s3:prefix" : [
-              "dp-patent/*",
-              "dp-patent",
-              "inventory",
-              "inventory/*"
-            ]
-          }
-        }
-      },
-      {
-        "Sid" : "ReadAccess",
-        "Effect" : "Allow",
-        "Action" : [
-          "s3:GetObject",
-          "s3:ListBucketMultipartUploads",
-          "s3:GetBucketLocation",
-          "s3:ListMultipartUploadParts"
-        ],
-        "Resource" : [
-          "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/*",
-          "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/*",
-          "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1-inventory/dp-patent/*",
-          "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/inventory/*",
-          "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1-inventory",
-          "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1-inventory/*"
-        ]
-      }
-    ]
-  })
-}
-
-
 resource "aws_iam_role" "sccontent_dp_patent_prod" {
   count = var.config["environment"] == "dev" ? 0 : 1
 
@@ -285,34 +149,6 @@ resource "aws_iam_role" "sccontent_dp_patent_prod" {
   })
 }
 
-
-resource "aws_iam_policy" "sccontent_dp_patent_prod_policy" {
-  count = var.config["environment"] == "dev" ? 0 : 1
-
-  name = "sccontent-dp-patent"
-  policy = jsonencode({
-    "Version" : "2012-10-17",
-    "Statement" : [
-      {
-        "Effect" : "Allow",
-        "Action" : [
-          "s3:List*",
-          "s3:Get*",
-          "s3:PutObject",
-          "s3:PutObjectAcl"
-        ],
-        "Resource" : [
-          "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
-          "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/*",
-          "arn:aws:s3:::dp-patent",
-          "arn:aws:s3:::dp-patent/*"
-        ]
-      }
-    ]
-  })
-}
-
-
 resource "aws_iam_role" "univentio_patents_data_load_1" {
   count = var.config["environment"] == "dev" ? 0 : 1
 
@@ -328,38 +164,6 @@ resource "aws_iam_role" "univentio_patents_data_load_1" {
           "Service" : "importexport.amazonaws.com"
         },
         "Action" : "sts:AssumeRole"
-      }
-    ]
-  })
-}
-
-
-resource "aws_iam_policy" "univentio_patents_data_load_1_policy" {
-  count = var.config["environment"] == "dev" ? 0 : 1
-
-  path = "/service-role/"
-  name = "SnowFamilyS3Import-Univentio-patents-data-load-1-policy"
-  policy = jsonencode({
-    "Version" : "2012-10-17",
-    "Statement" : [
-      {
-        "Effect" : "Allow",
-        "Action" : [
-          "s3:GetBucketPolicy",
-          "s3:GetBucketLocation",
-          "s3:ListBucketMultipartUploads",
-          "s3:ListBucket",
-          "s3:HeadBucket",
-          "s3:PutObject",
-          "s3:AbortMultipartUpload",
-          "s3:ListMultipartUploadParts",
-          "s3:PutObjectAcl",
-          "s3:GetObject"
-        ],
-        "Resource" : [
-          "arn:aws:s3:::dp-patent",
-          "arn:aws:s3:::dp-patent/*"
-        ]
       }
     ]
   })
