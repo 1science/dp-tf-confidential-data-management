@@ -1,7 +1,7 @@
 
 resource "aws_iam_role" "edm_access_prod_role" {
   count       = var.config["environment"] == "dev" ? 0 : 1
-  description = "A role for accessing production EDM data from services in the production account, 296075517832"
+  description = "A role for accessing production EDM data from services for the Person Registry"
   tags = {
     "contact" = "datacastor@elsevier.com"
   }
