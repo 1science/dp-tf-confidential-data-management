@@ -90,6 +90,18 @@
       ]
     },
     {
+      "Sid": "AllowPatentReferenceTranslatorAccountsAccessToData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-translator-1"
+      },
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
+      ]
+    },
+    {
       "Sid": "Only allow writes with bucket owner full control ACL",
       "Effect": "Allow",
       "Principal": {
