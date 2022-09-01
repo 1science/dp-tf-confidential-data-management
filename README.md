@@ -9,7 +9,7 @@ Wiki: https://elsevier.atlassian.net/wiki/spaces/RDP/pages/119600970030676/Terra
 
 ```bash
 # Choose account aws-rt-dataconfidential-nonprod (dev) or aws-rt-dataconfidential-prod (prod)
-aws-adfs login --adfs-host federation.reedelsevier.com --region us-east-2 --role-arn  assumed-role/ADFS-Developer/{USERNAME}@science.regn.net --session-duration 14400 --profile dp-bucket
+aws-adfs login --adfs-host federation.reedelsevier.com --region us-east-2 --role-arn  assumed-role/ADFS-Developer/roberged@science.regn.net --session-duration 14400 --profile dp-bucket
 export AWS_PROFILE="dp-bucket"
 ```
 

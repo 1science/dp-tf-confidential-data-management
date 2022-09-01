@@ -197,7 +197,8 @@
             "dp-patent",
             "dp-patent/US",
             "dp-patent/EU",
-            "dp-patent/WO"
+            "dp-patent/WO",
+            "dp-patent/EP"
           ]
         }
       }
@@ -215,7 +216,8 @@
           "s3:prefix": [
             "dp-patent/US/*",
             "dp-patent/EU/*",
-            "dp-patent/WO/*"
+            "dp-patent/WO/*",
+            "dp-patent/EP/*"
           ]
         }
       }
@@ -239,7 +241,8 @@
       "Resource": [
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/US/*",
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/EU/*",
-        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/WO/*"
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/WO/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/EP/*"
       ]
     },
     {
