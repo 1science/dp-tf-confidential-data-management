@@ -114,6 +114,22 @@ resource "aws_iam_role" "dp_access_patent_reader" {
   })
 }
 
+resource "aws_iam_role" "dp_access_patent_reference_translator" {
+  provider = aws.bucket
+  name     = "dp-access-translator-1"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        "Effect" : "Allow"
+        "Principal" : { "AWS" : var.config["dp_patent_reference_translator_service_role_arn"] }
+        "Action" : "sts:AssumeRole"
+        "Condition" : {}
+      }
+    ]
+  })
+}
+
 
 output "dp_access_patent_transformer_arn" {
   value = aws_iam_role.dp_access_patent_transformer.arn
@@ -125,4 +141,8 @@ output "dp_access_patent_writer_arn" {
 
 output "dp_access_patent_reader_arn" {
   value = aws_iam_role.dp_access_patent_reader.arn
+}
+
+output "dp_access_patent_reference_translator_arn" {
+  value = aws_iam_role.dp_access_patent_reference_translator.arn
 }
