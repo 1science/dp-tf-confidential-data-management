@@ -435,6 +435,23 @@
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/*"
       ]
+    },
+    {
+      "Sid": "AllowAdaptorFilterAccountsAccessToData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/dp-access-filter-1"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
+      "Condition": {
+        "StringEquals": {
+          "s3:prefix": [
+            "dp-patent/*",
+            "dp-patent-edm/*"
+          ]
+        }
+      }
     }
   ]
 }

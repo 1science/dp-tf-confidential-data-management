@@ -430,6 +430,23 @@
         "s3:GetBucketLocation"
       ],
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
+    },
+    {
+      "Sid": "AllowAdaptorFilterAccountsAccessToData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-filter-1"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+      "Condition": {
+        "StringEquals": {
+          "s3:prefix": [
+            "dp-patent/*",
+            "dp-patent-edm/*"
+          ]
+        }
+      }
     }
   ]
 }
