@@ -432,6 +432,32 @@
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
     },
     {
+      "Sid": "AllowPRAccountAccessToOrcid",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-orcid-access-pr-dev"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": [
+            "dp-orcid-edm/",
+            "dp-orcid-edm/*"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "AllowPRAccountAccessToOrcid",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-orcid-access-pr-dev"
+      },
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-orcid-edm/*"
+    },
+    {
       "Sid": "AllowAdaptorFilterAccountsAccessToData",
       "Effect": "Allow",
       "Principal": {
