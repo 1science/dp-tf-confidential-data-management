@@ -274,3 +274,43 @@ resource "aws_iam_role" "patent_access_entellect" {
     ]
   })
 }
+
+resource "aws_iam_role" "orcid_access_person_registry_dev" {
+    provider    = aws.bucket
+
+      assume_role_policy    = jsonencode(
+          {
+              Statement = [
+                  {
+                      Action    = "sts:AssumeRole"
+                      Effect    = "Allow"
+                      Principal = {
+                          AWS = "arn:aws:iam::296075517832:role/dp-person-registry-matcher-service-dev-role"
+                      }
+                  },
+                  {
+                      Action    = "sts:AssumeRole"
+                      Effect    = "Allow"
+                      Principal = {
+                          AWS = "arn:aws:iam::210275200797:role/ADFS-Developer"
+                      }
+                  },
+              ]
+              Version   = "2012-10-17"
+            }
+      )
+      description           = "List/get access to all ORCID content in non-prod"
+      force_detach_policies = false
+      managed_policy_arns   = []
+      max_session_duration  = 3600
+      name                  = "dp-orcid-access-pr-dev"
+      path                  = "/"
+      tags                  = {
+          "creator"  = "d.kuyek@elsevier.com"
+          "customer" = "Person Registry"
+      }
+      tags_all              = {
+          "creator"  = "d.kuyek@elsevier.com"
+          "customer" = "Person Registry"
+      }
+    }
