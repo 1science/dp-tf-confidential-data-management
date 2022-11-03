@@ -90,6 +90,35 @@
       ]
     },
     {
+      "Sid": "AllowOrcidReaderTestAccessList",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-reader-3"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": [
+            "test/dp-orcid/",
+            "test/dp-orcid/*"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "AllowOrcidReaderTestAccessGetPut",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-reader-3"
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test/dp-orcid/*"
+    },
+    {
       "Sid": "AllowPatentReferenceTranslatorAccountsAccessToData",
       "Effect": "Allow",
       "Principal": {
