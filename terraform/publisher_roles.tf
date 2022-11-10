@@ -93,8 +93,7 @@ output "dp_access_orcid_writer_arn" {
 }
 
 output "dp_access_orcid_writer_test_arn" {
-  count = var.config["environment"] == "dev" ? 1 : 0  # equivalent to enabled/disabled
-  value = aws_iam_role.dp_access_orcid_writer_test[0].arn
+  value = aws_iam_role.dp_access_orcid_writer_test.*.arn
 }
 
 output "dp_access_orcid_reader_arn" {
@@ -102,8 +101,7 @@ output "dp_access_orcid_reader_arn" {
 }
 
 output "dp_access_orcid_reader_test_arn" {
-  count = var.config["environment"] == "dev" ? 1 : 0  # equivalent to enabled/disabled
-  value = aws_iam_role.dp_access_orcid_reader_test[0].arn
+  value = aws_iam_role.dp_access_orcid_reader_test.*.arn
 }
 
 
