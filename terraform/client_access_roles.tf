@@ -287,7 +287,14 @@ resource "aws_iam_role" "orcid_access_person_registry" {
                       Principal = {
                           AWS = "arn:aws:iam::296075517832:role/dp-person-registry-matcher-service-dev-role"  # TODO: change for prod
                       }
-                  }
+                  },
+                  {
+                      Action    = "sts:AssumeRole"
+                      Effect    = "Allow"
+                      Principal = {
+                          AWS = "arn:aws:iam::210275200797:role/ADFS-Developer"
+                      }
+                  },
               ]
               Version   = "2012-10-17"
             }
