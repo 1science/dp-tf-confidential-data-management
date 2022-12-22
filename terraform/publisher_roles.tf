@@ -33,6 +33,23 @@ resource "aws_iam_role" "dp_access_orcid_writer" {
   })
 }
 
+resource "aws_iam_role" "dp_access_orcid_writer_test" {  # only exists in non-prod AWS account
+  provider = aws.bucket
+  name     = "dp-access-writer-3"
+  count    = var.config["environment"] == "dev" ? 1 : 0  # equivalent to enabled/disabled
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        "Effect" : "Allow"
+        "Principal" : { "AWS" : var.config["dp_orcid_writer_service_test_role_arn"] }
+        "Action" : "sts:AssumeRole"
+        "Condition" : {}
+      }
+    ]
+  })
+}
+
 resource "aws_iam_role" "dp_access_orcid_reader" {
   provider = aws.bucket
   name     = "dp-access-reader-1"
@@ -49,6 +66,23 @@ resource "aws_iam_role" "dp_access_orcid_reader" {
   })
 }
 
+resource "aws_iam_role" "dp_access_orcid_reader_test" {  # only exists in non-prod AWS account
+  provider = aws.bucket
+  name     = "dp-access-reader-3"
+  count    = var.config["environment"] == "dev" ? 1 : 0  # equivalent to enabled/disabled
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        "Effect" : "Allow"
+        "Principal" : { "AWS" : var.config["dp_orcid_reader_service_test_role_arn"] }
+        "Action" : "sts:AssumeRole"
+        "Condition" : {}
+      }
+    ]
+  })
+}
+
 
 output "dp_access_orcid_transformer_arn" {
   value = aws_iam_role.dp_access_orcid_transformer.arn
@@ -58,8 +92,16 @@ output "dp_access_orcid_writer_arn" {
   value = aws_iam_role.dp_access_orcid_writer.arn
 }
 
+output "dp_access_orcid_writer_test_arn" {
+  value = aws_iam_role.dp_access_orcid_writer_test.*.arn
+}
+
 output "dp_access_orcid_reader_arn" {
   value = aws_iam_role.dp_access_orcid_reader.arn
+}
+
+output "dp_access_orcid_reader_test_arn" {
+  value = aws_iam_role.dp_access_orcid_reader_test.*.arn
 }
 
 
