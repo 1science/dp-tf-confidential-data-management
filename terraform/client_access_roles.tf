@@ -287,7 +287,14 @@ resource "aws_iam_role" "orcid_access_person_registry_dev" {
                       Principal = {
                           AWS = "arn:aws:iam::296075517832:role/dp-person-registry-matcher-service-dev-role"
                       }
-                  }
+                  },
+                  {
+                      Action    = "sts:AssumeRole"
+                      Effect    = "Allow"
+                      Principal = {
+                          AWS = "arn:aws:iam::210275200797:role/ADFS-Developer"
+                      }
+                  },
               ]
               Version   = "2012-10-17"
             }
@@ -307,29 +314,3 @@ resource "aws_iam_role" "orcid_access_person_registry_dev" {
           "customer" = "Person Registry"
       }
     }
-
-resource "aws_iam_role" "patent_edm_access_sccontent" {
-  provider    = aws.bucket
-
-  name                  = "dp-patent-edm-access-sccontent"
-  assume_role_policy    = jsonencode(
-    {
-      Statement = [
-        {
-          Action    = "sts:AssumeRole"
-          Effect    = "Allow"
-          Principal = {
-            AWS = var.config["sccontent_patent_edm_arn"]
-          }
-        }
-      ]
-      Version   = "2012-10-17"
-    }
-  )
-  description           = "List/get access to all Patent EDM content in non-prod"
-  max_session_duration  = 43200
-  tags                  = {
-    "creator"  = "d.kuyek@elsevier.com"
-    "customer" = "SC Content"
-  }
-}
