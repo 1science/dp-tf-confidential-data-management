@@ -275,7 +275,7 @@ resource "aws_iam_role" "patent_access_entellect" {
   })
 }
 
-resource "aws_iam_role" "orcid_access_person_registry_dev" {
+resource "aws_iam_role" "orcid_access_person_registry" {
     provider    = aws.bucket
 
       assume_role_policy    = jsonencode(
@@ -285,7 +285,7 @@ resource "aws_iam_role" "orcid_access_person_registry_dev" {
                       Action    = "sts:AssumeRole"
                       Effect    = "Allow"
                       Principal = {
-                          AWS = "arn:aws:iam::296075517832:role/dp-person-registry-matcher-service-dev-role"
+                          AWS = "arn:aws:iam::296075517832:role/dp-person-registry-matcher-service-dev-role"  # TODO: change for prod
                       }
                   }
               ]
@@ -320,6 +320,13 @@ resource "aws_iam_role" "patent_edm_access_sccontent" {
           Effect    = "Allow"
           Principal = {
             AWS = var.config["sccontent_patent_edm_arn"]
+          }
+        },
+        {
+          Action    = "sts:AssumeRole"
+          Effect    = "Allow"
+          Principal = {
+            AWS = "arn:aws:sts::831790613400:role/ADFS-EnterpriseAdmin"
           }
         }
       ]
