@@ -296,7 +296,7 @@ resource "aws_iam_role" "orcid_access_person_registry" {
       force_detach_policies = false
       managed_policy_arns   = []
       max_session_duration  = 3600
-      name                  = "dp-orcid-access-pr-dev"
+      name                  = "dp-orcid-access-pr-${var.config["environment"]}"  # normally name is same in prod and dev, but env dependent here for historical reason
       path                  = "/"
       tags                  = {
           "creator"  = "d.kuyek@elsevier.com"
