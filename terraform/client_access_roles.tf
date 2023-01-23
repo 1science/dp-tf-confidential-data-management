@@ -285,16 +285,9 @@ resource "aws_iam_role" "orcid_access_person_registry" {
                       Action    = "sts:AssumeRole"
                       Effect    = "Allow"
                       Principal = {
-                          AWS = "arn:aws:iam::296075517832:role/dp-person-registry-matcher-service-dev-role"  # TODO: change for prod
+                          AWS = var.config["person_registry_matcher_service_arn"]
                       }
-                  },
-                  {
-                      Action    = "sts:AssumeRole"
-                      Effect    = "Allow"
-                      Principal = {
-                          AWS = "arn:aws:iam::210275200797:role/ADFS-Developer"
-                      }
-                  },
+                  }
               ]
               Version   = "2012-10-17"
             }
@@ -327,13 +320,6 @@ resource "aws_iam_role" "patent_edm_access_sccontent" {
           Effect    = "Allow"
           Principal = {
             AWS = var.config["sccontent_patent_edm_arn"]
-          }
-        },
-        {
-          Action    = "sts:AssumeRole"
-          Effect    = "Allow"
-          Principal = {
-            AWS = "arn:aws:sts::831790613400:role/ADFS-EnterpriseAdmin"
           }
         }
       ]
