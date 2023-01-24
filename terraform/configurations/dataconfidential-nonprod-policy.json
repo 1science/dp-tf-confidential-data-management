@@ -556,6 +556,15 @@
           ]
         }
       }
+    },
+    {
+      "Sid": "AllowCloudfrontDevAccessToPatent",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity E12X24IALWGLV6"
+      },
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/*"
     }
   ]
 }
