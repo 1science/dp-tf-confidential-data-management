@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -o pipefail -o errexit
 export aws_bootstrap_region="us-east-2"
+export AWS_DEFAULT_REGION="us-east-2"
 
 COMPONENT=$(basename `git rev-parse --show-toplevel`)
 
