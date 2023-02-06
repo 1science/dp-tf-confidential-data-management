@@ -158,10 +158,7 @@ resource "aws_iam_role" "patent_access_engineering_village_role" {
         "Effect" : "Allow",
         "Principal" : {
           "AWS" : [
-            "arn:aws:iam::868616482097:root",
-            "arn:aws:iam::230521890328:root",
-            "arn:aws:iam::230521890328:role/ADFS-Developer",
-            "arn:aws:iam::210275200797:role/ADFS-Developer"
+            "arn:aws:iam::${var.config["engineering_village_aws_account_id"]}:root"
           ]
         },
         "Action" : "sts:AssumeRole",
