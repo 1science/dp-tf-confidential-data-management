@@ -282,7 +282,7 @@ resource "aws_iam_role" "orcid_access_person_registry" {
                       Action    = "sts:AssumeRole"
                       Effect    = "Allow"
                       Principal = {
-                          AWS = var.config["person_registry_matcher_service_arn"] // TODO: Role has not yet been created for PROD, in future modify prod_config.tfvars
+                          AWS = var.config["person_registry_matcher_service_arn"]
                       }
                   }
               ]
