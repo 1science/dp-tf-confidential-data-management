@@ -549,7 +549,7 @@
       "Action": "s3:ListBucket",
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
       "Condition": {
-        "StringEquals": {
+        "StringLike": {
           "s3:prefix": [
             "dp-patent/*",
             "dp-patent-edm/*"
@@ -575,7 +575,7 @@
       "Action": "s3:ListBucket",
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
       "Condition": {
-        "StringEquals": {
+        "StringLike": {
           "s3:prefix": [
             "test-adaptor-filter-dp-patent/*",
             "test-adaptor-filter-dp-patent-edm/*"
