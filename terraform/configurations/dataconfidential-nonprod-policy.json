@@ -558,6 +558,15 @@
       }
     },
     {
+      "Sid": "AllowAdaptorFilterAccountsAccessToGetData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-filter-1"
+      },
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent-edm/*"
+    },
+    {
       "Sid": "AllowCloudfrontDevAccessToPatent",
       "Effect": "Allow",
       "Principal": {
@@ -584,7 +593,16 @@
       }
     },
     {
-      "Sid": "AllowCloudfrontTestAccessToPatent",
+      "Sid": "AllowTestEnvAdaptorFilterAccountsAccessToGetData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-filter-test"
+      },
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-adaptor-filter-dp-patent-edm/*"
+    },
+    {
+      "Sid": "AllowTestEnvCloudfrontAccessToPatent",
       "Effect": "Allow",
       "Principal": {
         "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity E21DKQHOCNMJDB"
