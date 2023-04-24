@@ -159,6 +159,32 @@
       ]
     },
     {
+      "Sid": "AllowTestEnvTranslatorAccountsAccessToDataList",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-translator-test"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": "test-translator-dp-patent-edm/*"
+        }
+      }
+    },
+    {
+      "Sid": "AllowTestEnvTranslatorAccountsAccessToDataGetPut",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-translator-test"
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-translator-dp-patent-edm/*"
+    },
+    {
       "Sid": "Only allow writes with bucket owner full control ACL",
       "Effect": "Allow",
       "Principal": {
