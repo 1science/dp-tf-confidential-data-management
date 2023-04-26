@@ -207,10 +207,6 @@ output "dp_access_patent_reference_translator_arn" {
   value = aws_iam_role.dp_access_patent_reference_translator.arn
 }
 
-output "dp_access_patent_reference_translator_test_env_arn" {
-  value = aws_iam_role.dp_access_patent_reference_translator_test_env.arn
-}
-
 #============================ ROLES FOR ADAPTOR FILTER ============================#
 
 resource "aws_iam_role" "dp_access_adaptor_filter" {
