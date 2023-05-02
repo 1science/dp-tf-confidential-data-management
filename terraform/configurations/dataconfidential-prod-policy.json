@@ -513,15 +513,6 @@
       },
       "Action": "s3:GetObject",
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent-edm/*"
-    },
-    {
-      "Sid": "AllowCloudfrontTestAccessToPatent",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity XXXXXXXXXXXX"  # TODO this cloudfront doesnt exist
-      },
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/*"
     }
   ]
 }

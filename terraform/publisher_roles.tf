@@ -241,3 +241,14 @@ resource "aws_iam_role" "dp_access_adaptor_filter_test_env" {
     ]
   })
 }
+
+# TODO: this entry will need to be added for prod access for Cloudfront when there is a cloudfront instance deployed in prod
+#{
+#"Sid": "AllowCloudfrontTestAccessToPatent",
+#"Effect": "Allow",
+#"Principal": {
+#"AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity XXXXXXXXXXXX"
+#},
+#"Action": "s3:GetObject",
+#"Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent/*"
+#}
