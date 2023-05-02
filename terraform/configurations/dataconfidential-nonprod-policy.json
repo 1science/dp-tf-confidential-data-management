@@ -66,6 +66,41 @@
       ]
     },
     {
+      "Sid": "AllowTestEnvPatentTransformerListData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-transformer-3"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": [
+            "test-patent-transformer-dp-patent/*",
+            "test-patent-transformer-dp-patent-edm/*"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "AllowTestEnvPatentTransformerGetData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-transformer-3"
+      },
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-patent-transformer-dp-patent/*"
+    },
+    {
+      "Sid": "AllowTestEnvPatentTransformerToPutData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-transformer-3"
+      },
+      "Action": "s3:PutObject",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-patent-transformer-dp-patent-edm/*"
+    },
+    {
       "Sid": "AllowPatentWriterAccountsAccessToData",
       "Effect": "Allow",
       "Principal": {
