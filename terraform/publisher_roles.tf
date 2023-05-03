@@ -124,6 +124,23 @@ resource "aws_iam_role" "dp_access_patent_transformer" {
   })
 }
 
+resource "aws_iam_role" "dp_access_patent_transformer_test_env" {
+  count    = var.config["environment"] == "dev" ? 1 : 0
+  provider = aws.bucket
+  name     = "dp-access-transformer-3"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        "Effect" : "Allow"
+        "Principal" : { "AWS" : var.config["dp_test_patent_transformer_service_role_arn"] }
+        "Action" : "sts:AssumeRole"
+        "Condition" : {}
+      }
+    ]
+  })
+}
+
 resource "aws_iam_role" "dp_access_patent_writer" {
   provider = aws.bucket
   name     = "dp-access-writer-2"
