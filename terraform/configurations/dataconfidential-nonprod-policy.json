@@ -672,6 +672,31 @@
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-adaptor-filter-dp-patent-edm/*"
     },
     {
+      "Sid": "AllowTestEnvEVAccessToData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-patent-access-engineering-village"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": [
+            "test-adaptor-filter-dp-patent/*"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "AllowTestEnvEVAccessToGetData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-patent-access-engineering-village"
+      },
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-adaptor-filter-dp-patent/*"
+    },
+    {
       "Sid": "AllowTestEnvCloudfrontAccessToPatent",
       "Effect": "Allow",
       "Principal": {
