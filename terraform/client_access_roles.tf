@@ -138,7 +138,10 @@ resource "aws_iam_role" "orcid_access_person_registry" {
                       Action    = "sts:AssumeRole"
                       Effect    = "Allow"
                       Principal = {
-                          AWS = var.config["person_registry_matcher_service_arn"]
+                          AWS = [
+                            var.config["person_registry_matcher_service_arn"],
+                            var.config["person_registry_exhibit_service_arn"]
+                          ]
                       }
                   }
               ]

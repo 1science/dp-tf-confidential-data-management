@@ -185,9 +185,7 @@
       "Principal": {
         "AWS": "arn:aws:iam::210275200797:role/dp-access-writer-3"
       },
-      "Action": [
-        "s3:PutObject"
-      ],
+      "Action": "s3:PutObject",
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test/dp-orcid/*"
     },
     {
@@ -383,64 +381,6 @@
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/WO/*",
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/EP/*"
       ]
-    },
-    {
-      "Sid": "DataForceListBucket1",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::210275200797:role/rdp-data-force-control-role"
-      },
-      "Action": "s3:ListBucket",
-      "Resource": [
-        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
-      ],
-      "Condition": {
-        "StringLike": {
-          "s3:prefix": [
-            "",
-            "dp-patent/*",
-            "dp-patent",
-            "dp-orcid/*",
-            "dp-orcid",
-            "dp-patent-edm",
-            "dp-patent-edm/*",
-            "dp-orcid-edm",
-            "dp-orcid-edm/*"
-          ]
-        }
-      }
-    },
-    {
-      "Sid": "DataForceGetObject",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::210275200797:role/rdp-data-force-control-role"
-      },
-      "Action": [
-        "s3:GetObject",
-        "s3:ListMultipartUploadParts"
-      ],
-      "Resource": [
-        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/*",
-        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-orcid",
-        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-orcid/*",
-        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-orcid-edm",
-        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-orcid-edm/*",
-        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent-edm",
-        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent-edm/*"
-      ]
-    },
-    {
-      "Sid": "DataForceListBucket2",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::210275200797:role/rdp-data-force-control-role"
-      },
-      "Action": [
-        "s3:GetBucketLocation",
-        "s3:ListBucketMultipartUploads"
-      ],
-      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
     },
     {
       "Sid": "AllowSccontentDP",
@@ -681,9 +621,7 @@
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
       "Condition": {
         "StringLike": {
-          "s3:prefix": [
-            "test-adaptor-filter-dp-patent/*"
-          ]
+          "s3:prefix": "test-adaptor-filter-dp-patent/*"
         }
       }
     },
