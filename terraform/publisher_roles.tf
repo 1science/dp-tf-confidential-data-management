@@ -206,6 +206,39 @@ resource "aws_iam_role" "dp_access_patent_reference_translator_test_env" {
   })
 }
 
+resource "aws_iam_role" "dp_access_patent_reference_tagger" {
+  provider = aws.bucket
+  name     = "dp-access-tagger-1"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        "Effect" : "Allow"
+        "Principal" : { "AWS" : var.config["dp_patent_reference_tagger_service_role_arn"] }
+        "Action" : "sts:AssumeRole"
+        "Condition" : {}
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role" "dp_access_patent_reference_tagger_test_env" {
+  count    = var.config["environment"] == "dev" ? 1 : 0
+  provider = aws.bucket
+  name     = "dp-access-tagger-test"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        "Effect" : "Allow"
+        "Principal" : { "AWS" : var.config["dp_patent_reference_tagger_service_role_test_arn"] }
+        "Action" : "sts:AssumeRole"
+        "Condition" : {}
+      }
+    ]
+  })
+}
+
 
 
 output "dp_access_patent_transformer_arn" {
