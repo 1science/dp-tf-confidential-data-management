@@ -227,6 +227,44 @@
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-translator-dp-patent-edm/*"
     },
     {
+      "Sid": "AllowPatentReferenceTaggerAccountsAccessToData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-tagger-1"
+      },
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
+      ]
+    },
+    {
+      "Sid": "AllowTestEnvTaggerAccountsAccessToDataList",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-tagger-test"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": "test-tagger-dp-patent-edm/*"
+        }
+      }
+    },
+    {
+      "Sid": "AllowTestEnvTaggerAccountsAccessToDataGetPut",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-tagger-test"
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-tagger-dp-patent-edm/*"
+    },
+    {
       "Sid": "Only allow writes with bucket owner full control ACL",
       "Effect": "Allow",
       "Principal": {
