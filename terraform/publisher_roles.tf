@@ -292,6 +292,23 @@ resource "aws_iam_role" "dp_access_adaptor_filter_test_env" {
   })
 }
 
+resource "aws_iam_role" "dp_access_adaptor_filter_uat_env" {
+  count    = var.config["environment"] == "dev" ? 1 : 0
+  provider = aws.bucket
+  name     = "dp-access-filter-uat"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        "Effect" : "Allow"
+        "Principal" : { "AWS" : var.config["dp_works_service_adaptor_filter_role_uat_arn"] }
+        "Action" : "sts:AssumeRole"
+        "Condition" : {}
+      }
+    ]
+  })
+}
+
 # TODO: this entry will need to be added for prod access for Cloudfront when there is a cloudfront instance deployed in prod
 #{
 #"Sid": "AllowCloudfrontTestAccessToPatent",
