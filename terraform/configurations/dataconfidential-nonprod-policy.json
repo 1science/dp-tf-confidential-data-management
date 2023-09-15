@@ -624,7 +624,7 @@
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/*"
     },
     {
-      "Sid": "AllowTestUATEnvAdaptorFilterAccountsAccessToData",
+      "Sid": "AllowTestUATEnvAdaptorFilterAccountsListBucket",
       "Effect": "Allow",
       "Principal": {
         "AWS": [
