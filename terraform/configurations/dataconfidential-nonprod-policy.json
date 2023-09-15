@@ -624,10 +624,13 @@
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/*"
     },
     {
-      "Sid": "AllowTestEnvAdaptorFilterAccountsAccessToData",
+      "Sid": "AllowTestUATEnvAdaptorFilterAccountsAccessToData",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::210275200797:role/dp-access-filter-test"
+        "AWS": [
+          "arn:aws:iam::210275200797:role/dp-access-filter-test",
+          "arn:aws:iam::210275200797:role/dp-access-filter-uat"
+        ]
       },
       "Action": "s3:ListBucket",
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
@@ -641,36 +644,13 @@
       }
     },
     {
-      "Sid": "AllowTestEnvAdaptorFilterAccountsAccessToGetData",
+      "Sid": "AllowTestUatEnvAdaptorFilterAccountsAccessToGetData",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::210275200797:role/dp-access-filter-test"
-      },
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-adaptor-filter-dp-patent-edm/*"
-    },
-    {
-      "Sid": "AllowUATEnvAdaptorFilterAccountsAccessToData",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::210275200797:role/dp-access-filter-uat"
-      },
-      "Action": "s3:ListBucket",
-      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
-      "Condition": {
-        "StringLike": {
-          "s3:prefix": [
-            "test-adaptor-filter-dp-patent/*",
-            "test-adaptor-filter-dp-patent-edm/*"
-          ]
-        }
-      }
-    },
-    {
-      "Sid": "AllowTestEnvAdaptorFilterAccountsAccessToGetData",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::210275200797:role/dp-access-filter-uat"
+        "AWS": [
+          "arn:aws:iam::210275200797:role/dp-access-filter-test",
+          "arn:aws:iam::210275200797:role/dp-access-filter-uat"
+        ]
       },
       "Action": "s3:GetObject",
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-adaptor-filter-dp-patent-edm/*"
