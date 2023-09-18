@@ -624,10 +624,13 @@
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/*"
     },
     {
-      "Sid": "AllowTestEnvAdaptorFilterAccountsAccessToData",
+      "Sid": "AllowTestUATEnvAdaptorFilterAccountsListBucket",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::210275200797:role/dp-access-filter-test"
+        "AWS": [
+          "arn:aws:iam::210275200797:role/dp-access-filter-test",
+          "arn:aws:iam::210275200797:role/dp-access-filter-uat"
+        ]
       },
       "Action": "s3:ListBucket",
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
@@ -641,10 +644,13 @@
       }
     },
     {
-      "Sid": "AllowTestEnvAdaptorFilterAccountsAccessToGetData",
+      "Sid": "AllowTestUatEnvAdaptorFilterAccountsAccessToGetData",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::210275200797:role/dp-access-filter-test"
+        "AWS": [
+          "arn:aws:iam::210275200797:role/dp-access-filter-test",
+          "arn:aws:iam::210275200797:role/dp-access-filter-uat"
+        ]
       },
       "Action": "s3:GetObject",
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-adaptor-filter-dp-patent-edm/*"
