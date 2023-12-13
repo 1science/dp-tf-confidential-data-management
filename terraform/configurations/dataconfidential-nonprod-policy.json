@@ -134,6 +134,35 @@
       ]
     },
     {
+      "Sid": "AllowTestEnvPatentReaderListData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-reader-4"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": [
+            "test-patent-reader-dp-patent/*",
+            "test-adaptor-filter-dp-patent/*"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "AllowTestEnvPatentReaderGetData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-reader-4"
+      },
+      "Action": "s3:GetObject",
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-patent-reader-dp-patent/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-adaptor-filter-dp-patent/*"
+      ]
+    },
+    {
       "Sid": "AllowOrcidReaderTestAccessList",
       "Effect": "Allow",
       "Principal": {
