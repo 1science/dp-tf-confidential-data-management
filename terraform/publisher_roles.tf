@@ -124,6 +124,23 @@ resource "aws_iam_role" "dp_access_patent_transformer" {
   })
 }
 
+resource "aws_iam_role" "dp_access_patent_transformer_e2e" {
+  count    = var.config["environment"] == "dev" ? 1 : 0
+  provider = aws.bucket
+  name     = "dp-access-transformer-4"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        "Effect" : "Allow"
+        "Principal" : { "AWS" : var.config["dp_e2e_patent_transformer_service_role_arn"] }
+        "Action" : "sts:AssumeRole"
+        "Condition" : {}
+      }
+    ]
+  })
+}
+
 resource "aws_iam_role" "dp_access_patent_transformer_test_env" {
   count    = var.config["environment"] == "dev" ? 1 : 0
   provider = aws.bucket
@@ -240,6 +257,23 @@ resource "aws_iam_role" "dp_access_patent_reference_translator_test_env" {
   })
 }
 
+resource "aws_iam_role" "dp_access_patent_reference_translator_e2e" {
+  count    = var.config["environment"] == "dev" ? 1 : 0
+  provider = aws.bucket
+  name     = "dp-access-translator-3"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        "Effect" : "Allow"
+        "Principal" : { "AWS" : var.config["dp_patent_reference_translator_service_role_e2e_arn"] }
+        "Action" : "sts:AssumeRole"
+        "Condition" : {}
+      }
+    ]
+  })
+}
+
 resource "aws_iam_role" "dp_access_patent_reference_tagger" {
   provider = aws.bucket
   name     = "dp-access-tagger-1"
@@ -273,7 +307,22 @@ resource "aws_iam_role" "dp_access_patent_reference_tagger_test_env" {
   })
 }
 
-
+resource "aws_iam_role" "dp_access_patent_reference_tagger_e2e" {
+  count    = var.config["environment"] == "dev" ? 1 : 0
+  provider = aws.bucket
+  name     = "dp-access-tagger-3"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        "Effect" : "Allow"
+        "Principal" : { "AWS" : var.config["dp_patent_reference_tagger_service_role_e2e_arn"] }
+        "Action" : "sts:AssumeRole"
+        "Condition" : {}
+      }
+    ]
+  })
+}
 
 output "dp_access_patent_transformer_arn" {
   value = aws_iam_role.dp_access_patent_transformer.arn
