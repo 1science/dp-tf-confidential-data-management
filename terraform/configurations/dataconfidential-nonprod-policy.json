@@ -352,10 +352,10 @@
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-tagger-dp-patent-edm/*"
     },
     {
-      "Sid": "AllowTestEnvTaggerAccountsAccessToDataList",
+      "Sid": "AllowE2eEnvTaggerAccountsAccessToDataList",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::296075517832:role/dp-access-tagger-3"
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-tagger-3"
       },
       "Action": "s3:ListBucket",
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
@@ -366,7 +366,7 @@
       }
     },
     {
-      "Sid": "AllowTestEnvTaggerAccountsAccessToDataGetPut",
+      "Sid": "AllowE2eEnvTaggerAccountsAccessToDataGetPut",
       "Effect": "Allow",
       "Principal": {
         "AWS": "arn:aws:iam::210275200797:role/dp-access-tagger-3"
