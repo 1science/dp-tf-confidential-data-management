@@ -302,7 +302,7 @@
       }
     },
     {
-      "Sid": "AllowTestE2eTranslatorAccountsAccessToDataGetPut",
+      "Sid": "AllowE2eTranslatorAccountsAccessToDataGetPut",
       "Effect": "Allow",
       "Principal": {
         "AWS": "arn:aws:iam::296075517832:role/dp-access-translator-3"
