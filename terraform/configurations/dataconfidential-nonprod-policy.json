@@ -132,7 +132,7 @@
       },
       "Action": "s3:PutObject",
       "Resource": [
-        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/e2e-patent-linking-dp-patent/*"
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/e2e-patent-linking-dp-patent-edm/*"
       ]
     },
     {
@@ -305,7 +305,7 @@
       "Sid": "AllowE2eTranslatorAccountsAccessToDataGetPut",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::296075517832:role/dp-access-translator-3"
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-translator-3"
       },
       "Action": [
         "s3:GetObject",
