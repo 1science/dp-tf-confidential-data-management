@@ -98,6 +98,44 @@
       ]
     },
     {
+      "Sid": "AllowE2eEnvPatentTransformerGetData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-transformer-4"
+      },
+      "Action": "s3:GetObject",
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/e2e-patent-linking-dp-patent/*"
+      ]
+    },
+    {
+      "Sid": "AllowE2eTestEnvPatentTransformerListData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-transformer-4"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": [
+            "e2e-patent-linking-dp-patent/*"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "AllowE2eEnvPatentTransformerToPutData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-transformer-4"
+      },
+      "Action": "s3:PutObject",
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/e2e-patent-linking-dp-patent-edm/*"
+      ]
+    },
+    {
       "Sid": "AllowTestEnvPatentTransformerToPutData",
       "Effect": "Allow",
       "Principal": {
@@ -250,6 +288,32 @@
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-translator-dp-patent-edm/*"
     },
     {
+      "Sid": "AllowE2eEnvTranslatorAccountsAccessToDataList",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-translator-3"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": "e2e-patent-linking-dp-patent-edm/*"
+        }
+      }
+    },
+    {
+      "Sid": "AllowE2eTranslatorAccountsAccessToDataGetPut",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-translator-3"
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/e2e-patent-linking-dp-patent-edm/*"
+    },
+    {
       "Sid": "AllowPatentReferenceTaggerAccountsAccessToData",
       "Effect": "Allow",
       "Principal": {
@@ -286,6 +350,32 @@
         "s3:PutObject"
       ],
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-tagger-dp-patent-edm/*"
+    },
+    {
+      "Sid": "AllowE2eEnvTaggerAccountsAccessToDataList",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-tagger-3"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": "e2e-patent-linking-dp-patent-edm/*"
+        }
+      }
+    },
+    {
+      "Sid": "AllowE2eEnvTaggerAccountsAccessToDataGetPut",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-tagger-3"
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/e2e-patent-linking-dp-patent-edm/*"
     },
     {
       "Sid": "Only allow writes with bucket owner full control ACL",
