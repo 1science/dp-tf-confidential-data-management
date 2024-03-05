@@ -808,6 +808,84 @@
       },
       "Action": "s3:GetObject",
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/*"
+    },
+    {
+      "Sid": "AllowRelationshipExtractorAccountsAccessToDataList",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-extractor-1"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": "dp-patent-edm/*"
+        }
+      }
+    },
+    {
+      "Sid": "AllowRelationshipExtractorAccountsAccessToDataGetPut",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-extractor-1"
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent-edm/*"
+    },
+    {
+      "Sid": "AllowTestEnvRelationshipExtractorAccountsAccessToDataList",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-extractor-test"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": "test-extractor-dp-patent-edm/*"
+        }
+      }
+    },
+    {
+      "Sid": "AllowTestEnvRelationshipExtractorAccountsAccessToDataGetPut",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-extractor-test"
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-extractor-dp-patent-edm/*"
+    },
+    {
+      "Sid": "AllowE2eEnvRelationshipExtractorAccountsAccessToDataList",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-extractor-e2e"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": "e2e-extractor-dp-patent-edm/*"
+        }
+      }
+    },
+    {
+      "Sid": "AllowE2eEnvRelationshipExtractorAccountsAccessToDataGetPut",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-extractor-e2e"
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/e2e-extractor-dp-patent-edm/*"
     }
   ]
 }

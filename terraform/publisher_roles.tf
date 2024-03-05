@@ -392,3 +392,54 @@ resource "aws_iam_role" "dp_access_adaptor_filter_uat_env" {
   })
 }
 
+#============================ ROLES FOR RELATIONSHIP EXTRACTOR ============================#
+
+resource "aws_iam_role" "dp_access_relationship_extractor" {
+  provider = aws.bucket
+  name     = "dp-access-extractor-1"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        "Effect" : "Allow"
+        "Principal" : { "AWS" : var.config["dp_works_extractor_service_role_arn"] }
+        "Action" : "sts:AssumeRole"
+        "Condition" : {}
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role" "dp_access_relationship_extractor_test_env" {
+  count    = var.config["environment"] == "dev" ? 1 : 0
+  provider = aws.bucket
+  name     = "dp-access-extractor-test"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        "Effect" : "Allow"
+        "Principal" : { "AWS" : var.config["dp_works_extractor_service_role_test_arn"] }
+        "Action" : "sts:AssumeRole"
+        "Condition" : {}
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role" "dp_access_relationship_extractor_e2e_env" {
+  count    = var.config["environment"] == "dev" ? 1 : 0
+  provider = aws.bucket
+  name     = "dp-access-extractor-e2e"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        "Effect" : "Allow"
+        "Principal" : { "AWS" : var.config["dp_works_extractor_service_role_e2e_arn"] }
+        "Action" : "sts:AssumeRole"
+        "Condition" : {}
+      }
+    ]
+  })
+}
