@@ -9,7 +9,10 @@ resource "aws_iam_role" "dp_access_orcid_transformer" {
     Statement = [
       {
         "Effect" : "Allow"
-        "Principal" : { "AWS" : var.config["dp_orcid_transformer_service_role_arn"] }
+        "Principal" : { "AWS" : [
+          var.config["dp_orcid_transformer_service_role_arn"],
+          var.config["cortex_dp_orcid_transformer_service_role_arn"],
+        ]}
         "Action" : "sts:AssumeRole"
         "Condition" : {}
       }
