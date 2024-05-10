@@ -17,7 +17,7 @@ resource "aws_iam_role" "dp_access_orcid_transformer" {
   })
 }
 
-resource "aws_iam_role" "dp_access_orcid_writer_test" {  # only exists in non-prod AWS account
+resource "aws_iam_role" "dp_access_orcid_transformer_test" {  # only exists in non-prod AWS account
   provider = aws.bucket
   name     = "dp-access-transformer-5"
   count    = var.config["environment"] == "dev" ? 1 : 0  # equivalent to enabled/disabled
