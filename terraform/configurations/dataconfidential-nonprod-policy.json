@@ -71,13 +71,7 @@
       "Principal": {
         "AWS": "arn:aws:iam::210275200797:role/dp-access-transformer-2"
       },
-      "Action": [
-        "s3:ListBucket",
-        "s3:GetObject",
-        "s3:GetBucketLocation",
-        "s3:PutObject",
-        "s3:DeleteObject"
-      ],
+      "Action": "s3:*",
       "Resource": [
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/*",
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1"
@@ -143,46 +137,23 @@
       }
     },
     {
-      "Sid": "AllowE2eEnvPatentTransformerToPutData",
+      "Sid": "AllowE2eEnvPatentTransformerToPutOrDeleteData",
       "Effect": "Allow",
       "Principal": {
         "AWS": "arn:aws:iam::210275200797:role/dp-access-transformer-4"
       },
-      "Action": "s3:PutObject",
+      "Action": ["s3:PutObject", "s3:DeleteObject"],
       "Resource": [
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/e2e-patent-linking-dp-patent-edm/*"
       ]
     },
     {
-      "Sid": "AllowE2eEnvPatentTransformerToDeleteData",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::210275200797:role/dp-access-transformer-4"
-      },
-      "Action": "s3:DeleteObject",
-      "Resource": [
-        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/e2e-patent-linking-dp-patent-edm/*"
-      ]
-    },
-    {
-      "Sid": "AllowTestEnvPatentTransformerToPutData",
+      "Sid": "AllowTestEnvPatentTransformerToPutOrDeleteData",
       "Effect": "Allow",
       "Principal": {
         "AWS": "arn:aws:iam::210275200797:role/dp-access-transformer-3"
       },
-      "Action": "s3:PutObject",
-      "Resource": [
-        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-patent-transformer-dp-patent-edm/*",
-        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-adaptor-filter-dp-patent-edm/*"
-      ]
-    },
-    {
-      "Sid": "AllowTestEnvPatentTransformerToDeleteData",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::210275200797:role/dp-access-transformer-3"
-      },
-      "Action": "s3:DeleteObject",
+      "Action": ["s3:PutObject", "s3:DeleteObject"],
       "Resource": [
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-patent-transformer-dp-patent-edm/*",
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-adaptor-filter-dp-patent-edm/*"
