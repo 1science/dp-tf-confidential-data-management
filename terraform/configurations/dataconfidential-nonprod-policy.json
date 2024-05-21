@@ -137,23 +137,23 @@
       }
     },
     {
-      "Sid": "AllowE2eEnvPatentTransformerToPutData",
+      "Sid": "AllowE2eEnvPatentTransformerToPutOrDeleteData",
       "Effect": "Allow",
       "Principal": {
         "AWS": "arn:aws:iam::210275200797:role/dp-access-transformer-4"
       },
-      "Action": "s3:PutObject",
+      "Action": ["s3:PutObject", "s3:DeleteObject"],
       "Resource": [
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/e2e-patent-linking-dp-patent-edm/*"
       ]
     },
     {
-      "Sid": "AllowTestEnvPatentTransformerToPutData",
+      "Sid": "AllowTestEnvPatentTransformerToPutOrDeleteData",
       "Effect": "Allow",
       "Principal": {
         "AWS": "arn:aws:iam::210275200797:role/dp-access-transformer-3"
       },
-      "Action": "s3:PutObject",
+      "Action": ["s3:PutObject", "s3:DeleteObject"],
       "Resource": [
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-patent-transformer-dp-patent-edm/*",
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/test-adaptor-filter-dp-patent-edm/*"
