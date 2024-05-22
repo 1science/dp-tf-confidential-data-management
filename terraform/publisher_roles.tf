@@ -17,6 +17,23 @@ resource "aws_iam_role" "dp_access_orcid_transformer" {
   })
 }
 
+resource "aws_iam_role" "dp_access_orcid_transformer_test" {  # only exists in non-prod AWS account
+  provider = aws.bucket
+  name     = "dp-access-transformer-5"
+  count    = var.config["environment"] == "dev" ? 1 : 0  # equivalent to enabled/disabled
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        "Effect" : "Allow"
+        "Principal" : { "AWS" : var.config["dp_orcid_transformer_service_test_role_arn"] }
+        "Action" : "sts:AssumeRole"
+        "Condition" : {}
+      }
+    ]
+  })
+}
+
 resource "aws_iam_role" "dp_access_orcid_writer" {
   provider = aws.bucket
   name     = "dp-access-writer-1"
