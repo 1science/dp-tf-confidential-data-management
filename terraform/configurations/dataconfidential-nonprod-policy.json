@@ -883,7 +883,10 @@
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
       "Condition": {
         "StringLike": {
-          "s3:prefix": "e2e-extractor-dp-patent-edm/*"
+          "s3:prefix": [
+            "e2e-extractor-dp-patent-edm/*",
+            "e2e-patent-linking-dp-patent-edm/*"
+          ]
         }
       }
     },
@@ -897,7 +900,10 @@
         "s3:GetObject",
         "s3:PutObject"
       ],
-      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/e2e-extractor-dp-patent-edm/*"
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/e2e-extractor-dp-patent-edm/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/e2e-patent-linking-dp-patent-edm/*"
+      ]
     }
   ]
 }
