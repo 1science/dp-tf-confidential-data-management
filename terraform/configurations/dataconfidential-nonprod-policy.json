@@ -906,6 +906,27 @@
       ]
     },
     {
+      "Sid": "rdpconsumptionservice",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::296075517832:role/dataplatform-consumption-service-iam-role-test",
+          "arn:aws:iam::296075517832:role/dataplatform-consumption-service-iam-role-uat",
+          "arn:aws:iam::296075517832:role/dataplatform-consumption-service-iam-role-dev",
+          "arn:aws:iam::296075517832:role/dataplatform-consumption-service-iam-role-perf"
+        ]
+      },
+      "Action": [
+        "s3:List*",
+        "s3:Get*",
+        "s3:*Object"
+      ],
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/*"
+      ]
+    },
+    {
       "Sid": "AllowWorksRegistryMatcherAccountAccessToPatent",
       "Effect": "Allow",
       "Principal": {
