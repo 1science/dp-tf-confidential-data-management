@@ -930,7 +930,12 @@
       "Sid": "AllowWorksRegistryMatcherAccountAccessToPatent",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::210275200797:role/dp-patent-access-works-registry-matcher"
+        "AWS": [
+          "arn:aws:iam::296075517832:role/dp-works-registry-matcher-application-dev-emr-instance-profile",
+          "arn:aws:iam::296075517832:role/dp-works-registry-matcher-application-e2e-emr-instance-profile",
+          "arn:aws:iam::296075517832:role/dp-works-registry-matcher-application-uat-emr-instance-profile",
+          "arn:aws:iam::296075517832:role/dp-works-registry-matcher-application-dm-emr-instance-profile"
+        ]
       },
       "Action": [
         "s3:ListBucket",

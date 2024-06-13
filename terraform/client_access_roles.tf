@@ -189,28 +189,3 @@ resource "aws_iam_role" "patent_edm_access_sccontent" {
     "customer" = "SC Content"
   }
 }
-
-resource "aws_iam_role" "patent_access_works_registry_matcher" {
-  provider              = aws.bucket
-  name                  = "dp-patent-access-works-registry-matcher"
-  assume_role_policy    = jsonencode(
-    {
-      Statement = [
-        {
-          Action    = "sts:AssumeRole"
-          Effect    = "Allow"
-          Principal = {
-            AWS = var.config["dp_works_registry_matcher_arn"]
-          }
-        }
-      ]
-      Version   = "2012-10-17"
-    }
-  )
-  description           = "List/get access to all Patent content"
-  max_session_duration  = 43200
-  tags                  = {
-    "creator"  = "a.tarumi@elsevier.com"
-    "customer" = "dp-works-registry-matcher"
-  }
-}
