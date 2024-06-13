@@ -485,6 +485,27 @@
         "s3:PutObject"
       ],
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent-edm/*"
+    },
+    {
+      "Sid": "AllowWorksRegistryMatcherAccountAccessToPatent",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/dp-patent-access-works-registry-matcher"
+      },
+      "Action": [
+        "s3:ListBucket",
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": [
+            "*patent*/",
+            "*patent*/*"
+          ]
+        }
+      }
     }
   ]
 }

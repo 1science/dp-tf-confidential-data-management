@@ -904,6 +904,27 @@
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/e2e-extractor-dp-patent-edm/*",
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/e2e-patent-linking-dp-patent-edm/*"
       ]
+    },
+    {
+      "Sid": "AllowWorksRegistryMatcherAccountAccessToPatent",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-patent-access-works-registry-matcher"
+      },
+      "Action": [
+        "s3:ListBucket",
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": [
+            "*patent*/",
+            "*patent*/*"
+          ]
+        }
+      }
     }
   ]
 }
