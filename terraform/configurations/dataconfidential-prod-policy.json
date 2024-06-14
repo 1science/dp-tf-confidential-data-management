@@ -497,15 +497,10 @@
         "s3:GetObject",
         "s3:PutObject"
       ],
-      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
-      "Condition": {
-        "StringLike": {
-          "s3:prefix": [
-            "*patent*/",
-            "*patent*/*"
-          ]
-        }
-      }
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/*"
+      ]
     }
   ]
 }
