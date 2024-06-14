@@ -938,19 +938,14 @@
         ]
       },
       "Action": [
-        "s3:ListBucket",
-        "s3:GetObject",
-        "s3:PutObject"
+        "s3:List*",
+        "s3:Get*",
+        "s3:*Object"
       ],
-      "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
-      "Condition": {
-        "StringLike": {
-          "s3:prefix": [
-            "*patent*/",
-            "*patent*/*"
-          ]
-        }
-      }
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/*"
+      ]
     }
   ]
 }
