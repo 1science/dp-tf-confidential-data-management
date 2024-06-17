@@ -918,8 +918,7 @@
       },
       "Action": [
         "s3:List*",
-        "s3:Get*",
-        "s3:*Object"
+        "s3:Get*"
       ],
       "Resource": [
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",

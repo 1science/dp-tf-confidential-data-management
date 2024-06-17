@@ -106,10 +106,7 @@
       "Principal": {
         "AWS": "arn:aws:iam::831790613400:role/dp-access-transformer-3"
       },
-      "Action": [
-        "s3:GetObject",
-        "s3:ListBucket"
-      ],
+      "Action": "s3:*",
       "Resource": [
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/*",
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
