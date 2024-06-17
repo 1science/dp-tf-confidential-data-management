@@ -101,6 +101,18 @@
       ]
     },
     {
+      "Sid": "AllowPatentTransformerAccountsAccessToData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::831790613400:role/dp-access-transformer-3"
+      },
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
+      ]
+    },
+    {
       "Sid": "AllowPatentWriterAccountsAccessToData",
       "Effect": "Allow",
       "Principal": {
@@ -485,6 +497,21 @@
         "s3:PutObject"
       ],
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent-edm/*"
+    },
+    {
+      "Sid": "AllowWorksRegistryMatcherAccountAccessToPatent",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::023759106857:role/dp-works-registry-matcher-application-prod-emr-instance-profile"
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/*"
+      ]
     }
   ]
 }

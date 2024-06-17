@@ -904,6 +904,46 @@
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/e2e-extractor-dp-patent-edm/*",
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/e2e-patent-linking-dp-patent-edm/*"
       ]
+    },
+    {
+      "Sid": "rdpconsumptionservice",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::296075517832:role/dataplatform-consumption-service-iam-role-test",
+          "arn:aws:iam::296075517832:role/dataplatform-consumption-service-iam-role-uat",
+          "arn:aws:iam::296075517832:role/dataplatform-consumption-service-iam-role-dev",
+          "arn:aws:iam::296075517832:role/dataplatform-consumption-service-iam-role-perf"
+        ]
+      },
+      "Action": [
+        "s3:List*",
+        "s3:Get*"
+      ],
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/*"
+      ]
+    },
+    {
+      "Sid": "AllowWorksRegistryMatcherAccountAccessToPatent",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::296075517832:role/dp-works-registry-matcher-application-dev-emr-instance-profile",
+          "arn:aws:iam::296075517832:role/dp-works-registry-matcher-application-e2e-emr-instance-profile",
+          "arn:aws:iam::296075517832:role/dp-works-registry-matcher-application-uat-emr-instance-profile",
+          "arn:aws:iam::296075517832:role/dp-works-registry-matcher-application-dm-emr-instance-profile"
+        ]
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/*"
+      ]
     }
   ]
 }

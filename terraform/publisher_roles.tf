@@ -1,11 +1,10 @@
-
 #============================ ROLES FOR ORCID HARVESTER ============================#
 
 resource "aws_iam_role" "dp_access_orcid_transformer" {
-  provider = aws.bucket
-  name     = "dp-access-transformer-1"
+  provider           = aws.bucket
+  name               = "dp-access-transformer-1"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -17,12 +16,13 @@ resource "aws_iam_role" "dp_access_orcid_transformer" {
   })
 }
 
-resource "aws_iam_role" "dp_access_orcid_transformer_test" {  # only exists in non-prod AWS account
-  provider = aws.bucket
-  name     = "dp-access-transformer-5"
-  count    = var.config["environment"] == "dev" ? 1 : 0  # equivalent to enabled/disabled
+resource "aws_iam_role" "dp_access_orcid_transformer_test" {
+  # only exists in non-prod AWS account
+  provider           = aws.bucket
+  name               = "dp-access-transformer-5"
+  count              = var.config["environment"] == "dev" ? 1 : 0  # equivalent to enabled/disabled
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -35,10 +35,10 @@ resource "aws_iam_role" "dp_access_orcid_transformer_test" {  # only exists in n
 }
 
 resource "aws_iam_role" "dp_access_orcid_writer" {
-  provider = aws.bucket
-  name     = "dp-access-writer-1"
+  provider           = aws.bucket
+  name               = "dp-access-writer-1"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -50,12 +50,13 @@ resource "aws_iam_role" "dp_access_orcid_writer" {
   })
 }
 
-resource "aws_iam_role" "dp_access_orcid_writer_test" {  # only exists in non-prod AWS account
-  provider = aws.bucket
-  name     = "dp-access-writer-3"
-  count    = var.config["environment"] == "dev" ? 1 : 0  # equivalent to enabled/disabled
+resource "aws_iam_role" "dp_access_orcid_writer_test" {
+  # only exists in non-prod AWS account
+  provider           = aws.bucket
+  name               = "dp-access-writer-3"
+  count              = var.config["environment"] == "dev" ? 1 : 0  # equivalent to enabled/disabled
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -68,10 +69,10 @@ resource "aws_iam_role" "dp_access_orcid_writer_test" {  # only exists in non-pr
 }
 
 resource "aws_iam_role" "dp_access_orcid_reader" {
-  provider = aws.bucket
-  name     = "dp-access-reader-1"
+  provider           = aws.bucket
+  name               = "dp-access-reader-1"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -83,12 +84,13 @@ resource "aws_iam_role" "dp_access_orcid_reader" {
   })
 }
 
-resource "aws_iam_role" "dp_access_orcid_reader_test" {  # only exists in non-prod AWS account
-  provider = aws.bucket
-  name     = "dp-access-reader-3"
-  count    = var.config["environment"] == "dev" ? 1 : 0  # equivalent to enabled/disabled
+resource "aws_iam_role" "dp_access_orcid_reader_test" {
+  # only exists in non-prod AWS account
+  provider           = aws.bucket
+  name               = "dp-access-reader-3"
+  count              = var.config["environment"] == "dev" ? 1 : 0  # equivalent to enabled/disabled
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -126,10 +128,10 @@ output "dp_access_orcid_reader_test_arn" {
 
 
 resource "aws_iam_role" "dp_access_patent_transformer" {
-  provider = aws.bucket
-  name     = "dp-access-transformer-2"
+  provider           = aws.bucket
+  name               = "dp-access-transformer-2"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -142,11 +144,11 @@ resource "aws_iam_role" "dp_access_patent_transformer" {
 }
 
 resource "aws_iam_role" "dp_access_patent_transformer_e2e" {
-  count    = var.config["environment"] == "dev" ? 1 : 0
-  provider = aws.bucket
-  name     = "dp-access-transformer-4"
+  count              = var.config["environment"] == "dev" ? 1 : 0
+  provider           = aws.bucket
+  name               = "dp-access-transformer-4"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -159,11 +161,11 @@ resource "aws_iam_role" "dp_access_patent_transformer_e2e" {
 }
 
 resource "aws_iam_role" "dp_access_patent_transformer_test_env" {
-  count    = var.config["environment"] == "dev" ? 1 : 0
-  provider = aws.bucket
-  name     = "dp-access-transformer-3"
+  count              = var.config["environment"] == "dev" ? 1 : 0
+  provider           = aws.bucket
+  name               = "dp-access-transformer-3"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -176,10 +178,10 @@ resource "aws_iam_role" "dp_access_patent_transformer_test_env" {
 }
 
 resource "aws_iam_role" "dp_access_patent_writer" {
-  provider = aws.bucket
-  name     = "dp-access-writer-2"
+  provider           = aws.bucket
+  name               = "dp-access-writer-2"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -192,11 +194,11 @@ resource "aws_iam_role" "dp_access_patent_writer" {
 }
 
 resource "aws_iam_role" "dp_access_patent_writer_test" {
-  count    = var.config["environment"] == "dev" ? 1 : 0
-  provider = aws.bucket
-  name     = "dp-access-writer-4"
+  count              = var.config["environment"] == "dev" ? 1 : 0
+  provider           = aws.bucket
+  name               = "dp-access-writer-4"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -209,10 +211,10 @@ resource "aws_iam_role" "dp_access_patent_writer_test" {
 }
 
 resource "aws_iam_role" "dp_access_patent_reader" {
-  provider = aws.bucket
-  name     = "dp-access-reader-2"
+  provider           = aws.bucket
+  name               = "dp-access-reader-2"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -225,11 +227,11 @@ resource "aws_iam_role" "dp_access_patent_reader" {
 }
 
 resource "aws_iam_role" "dp_access_patent_reader_test_env" {
-  count    = var.config["environment"] == "dev" ? 1 : 0
-  provider = aws.bucket
-  name     = "dp-access-reader-4"
+  count              = var.config["environment"] == "dev" ? 1 : 0
+  provider           = aws.bucket
+  name               = "dp-access-reader-4"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -242,10 +244,10 @@ resource "aws_iam_role" "dp_access_patent_reader_test_env" {
 }
 
 resource "aws_iam_role" "dp_access_patent_reference_translator" {
-  provider = aws.bucket
-  name     = "dp-access-translator-1"
+  provider           = aws.bucket
+  name               = "dp-access-translator-1"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -258,11 +260,11 @@ resource "aws_iam_role" "dp_access_patent_reference_translator" {
 }
 
 resource "aws_iam_role" "dp_access_patent_reference_translator_test_env" {
-  count    = var.config["environment"] == "dev" ? 1 : 0
-  provider = aws.bucket
-  name     = "dp-access-translator-test"
+  count              = var.config["environment"] == "dev" ? 1 : 0
+  provider           = aws.bucket
+  name               = "dp-access-translator-test"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -275,11 +277,11 @@ resource "aws_iam_role" "dp_access_patent_reference_translator_test_env" {
 }
 
 resource "aws_iam_role" "dp_access_patent_reference_translator_e2e" {
-  count    = var.config["environment"] == "dev" ? 1 : 0
-  provider = aws.bucket
-  name     = "dp-access-translator-3"
+  count              = var.config["environment"] == "dev" ? 1 : 0
+  provider           = aws.bucket
+  name               = "dp-access-translator-3"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -292,10 +294,10 @@ resource "aws_iam_role" "dp_access_patent_reference_translator_e2e" {
 }
 
 resource "aws_iam_role" "dp_access_patent_reference_tagger" {
-  provider = aws.bucket
-  name     = "dp-access-tagger-1"
+  provider           = aws.bucket
+  name               = "dp-access-tagger-1"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -308,11 +310,11 @@ resource "aws_iam_role" "dp_access_patent_reference_tagger" {
 }
 
 resource "aws_iam_role" "dp_access_patent_reference_tagger_test_env" {
-  count    = var.config["environment"] == "dev" ? 1 : 0
-  provider = aws.bucket
-  name     = "dp-access-tagger-test"
+  count              = var.config["environment"] == "dev" ? 1 : 0
+  provider           = aws.bucket
+  name               = "dp-access-tagger-test"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -325,11 +327,11 @@ resource "aws_iam_role" "dp_access_patent_reference_tagger_test_env" {
 }
 
 resource "aws_iam_role" "dp_access_patent_reference_tagger_e2e" {
-  count    = var.config["environment"] == "dev" ? 1 : 0
-  provider = aws.bucket
-  name     = "dp-access-tagger-3"
+  count              = var.config["environment"] == "dev" ? 1 : 0
+  provider           = aws.bucket
+  name               = "dp-access-tagger-3"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -360,10 +362,10 @@ output "dp_access_patent_reference_translator_arn" {
 #============================ ROLES FOR ADAPTOR FILTER ============================#
 
 resource "aws_iam_role" "dp_access_adaptor_filter" {
-  provider = aws.bucket
-  name     = "dp-access-filter-1"
+  provider           = aws.bucket
+  name               = "dp-access-filter-1"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -376,11 +378,11 @@ resource "aws_iam_role" "dp_access_adaptor_filter" {
 }
 
 resource "aws_iam_role" "dp_access_adaptor_filter_test_env" {
-  count    = var.config["environment"] == "dev" ? 1 : 0
-  provider = aws.bucket
-  name     = "dp-access-filter-test"
+  count              = var.config["environment"] == "dev" ? 1 : 0
+  provider           = aws.bucket
+  name               = "dp-access-filter-test"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -393,11 +395,11 @@ resource "aws_iam_role" "dp_access_adaptor_filter_test_env" {
 }
 
 resource "aws_iam_role" "dp_access_adaptor_filter_uat_env" {
-  count    = var.config["environment"] == "dev" ? 1 : 0
-  provider = aws.bucket
-  name     = "dp-access-filter-uat"
+  count              = var.config["environment"] == "dev" ? 1 : 0
+  provider           = aws.bucket
+  name               = "dp-access-filter-uat"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -412,10 +414,10 @@ resource "aws_iam_role" "dp_access_adaptor_filter_uat_env" {
 #============================ ROLES FOR RELATIONSHIP EXTRACTOR ============================#
 
 resource "aws_iam_role" "dp_access_relationship_extractor" {
-  provider = aws.bucket
-  name     = "dp-access-extractor-1"
+  provider           = aws.bucket
+  name               = "dp-access-extractor-1"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -428,11 +430,11 @@ resource "aws_iam_role" "dp_access_relationship_extractor" {
 }
 
 resource "aws_iam_role" "dp_access_relationship_extractor_test_env" {
-  count    = var.config["environment"] == "dev" ? 1 : 0
-  provider = aws.bucket
-  name     = "dp-access-extractor-test"
+  count              = var.config["environment"] == "dev" ? 1 : 0
+  provider           = aws.bucket
+  name               = "dp-access-extractor-test"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -445,11 +447,11 @@ resource "aws_iam_role" "dp_access_relationship_extractor_test_env" {
 }
 
 resource "aws_iam_role" "dp_access_relationship_extractor_e2e_env" {
-  count    = var.config["environment"] == "dev" ? 1 : 0
-  provider = aws.bucket
-  name     = "dp-access-extractor-e2e"
+  count              = var.config["environment"] == "dev" ? 1 : 0
+  provider           = aws.bucket
+  name               = "dp-access-extractor-e2e"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
         "Effect" : "Allow"
@@ -459,4 +461,25 @@ resource "aws_iam_role" "dp_access_relationship_extractor_e2e_env" {
       }
     ]
   })
+}
+
+resource "aws_iam_role" "dp_access_patent_transformer_backfill" {
+  count              = var.config["environment"] == "dev" ? 0 : 1
+  assume_role_policy = jsonencode(
+    {
+      Statement = [
+        {
+          Action    = "sts:AssumeRole"
+          Effect    = "Allow"
+          Principal = {
+            AWS = "arn:aws:iam::023759106857:role/rdp-prod-dp-patent-transformer-service-iam-role"
+          }
+          "Condition" : {}
+        },
+      ]
+      Version = "2012-10-17"
+    }
+  )
+  name                  = "dp-access-transformer-3"
+  provider              = aws.bucket
 }
