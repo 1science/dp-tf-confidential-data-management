@@ -499,6 +499,21 @@
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent-edm/*"
     },
     {
+      "Sid": "rdpconsumptionservice",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::023759106857:role/dataplatform-consumption-service-iam-role-prod"
+      },
+      "Action": [
+        "s3:List*",
+        "s3:Get*"
+      ],
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/*"
+      ]
+    },
+    {
       "Sid": "AllowWorksRegistryMatcherAccountAccessToPatent",
       "Effect": "Allow",
       "Principal": {
