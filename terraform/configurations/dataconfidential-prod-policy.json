@@ -517,7 +517,10 @@
       "Sid": "AllowWorksRegistryMatcherAccountAccessToPatent",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::023759106857:role/dp-works-registry-matcher-application-prod-emr-instance-profile"
+        "AWS": [
+          "arn:aws:iam::023759106857:role/dp-works-registry-matcher-application-prod-emr-instance-profile",
+          "arn:aws:iam::023759106857:role/dp-works-registry-patents-matcher-prod-emr-instance-profile"
+        ]
       },
       "Action": [
         "s3:GetObject",
