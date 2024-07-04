@@ -496,9 +496,12 @@
             "",
             "dp-patent",
             "dp-patent/US",
-            "dp-patent/EU",
             "dp-patent/WO",
-            "dp-patent/EP"
+            "dp-patent/EP",
+            "dp-patent/GB",
+            "dp-patent/DE",
+            "dp-patent/CN",
+            "dp-patent/JP"
           ]
         }
       }
@@ -515,9 +518,12 @@
         "StringLike": {
           "s3:prefix": [
             "dp-patent/US/*",
-            "dp-patent/EU/*",
             "dp-patent/WO/*",
-            "dp-patent/EP/*"
+            "dp-patent/EP/*",
+            "dp-patent/GB/*",
+            "dp-patent/DE/*",
+            "dp-patent/CN/*",
+            "dp-patent/JP/*"
           ]
         }
       }
@@ -540,9 +546,12 @@
       "Action": "s3:GetObject",
       "Resource": [
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/US/*",
-        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/EU/*",
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/WO/*",
-        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/EP/*"
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/EP/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/GB/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/DE/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/CN/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/JP/*"
       ]
     },
     {
