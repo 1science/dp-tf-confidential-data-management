@@ -942,7 +942,8 @@
           "arn:aws:iam::296075517832:role/dp-works-registry-matcher-application-dev-emr-instance-profile",
           "arn:aws:iam::296075517832:role/dp-works-registry-matcher-application-e2e-emr-instance-profile",
           "arn:aws:iam::296075517832:role/dp-works-registry-matcher-application-uat-emr-instance-profile",
-          "arn:aws:iam::296075517832:role/dp-works-registry-matcher-application-dm-emr-instance-profile"
+          "arn:aws:iam::296075517832:role/dp-works-registry-matcher-application-dm-emr-instance-profile",
+          "arn:aws:iam::023759106857:role/dp-works-registry-patents-matcher-prod-emr-instance-profile"
         ]
       },
       "Action": [
