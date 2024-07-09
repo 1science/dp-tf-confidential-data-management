@@ -22,7 +22,20 @@ resource "aws_iam_role" "patent_access_engineering_village_role" {
       }
     ]
   })
+  inline_policy {
+    name = "patent_access_engineering_village_policy"
+    policy = jsonencode({
+      Version = "2012-10-17"
+      Statement = {
+        Effect    = "Allow"
+        Action   = ["sqs:*"]
+        Resource = ["*"]
+      }
+    })
+  }
 }
+
+# ---------------------------
 
 resource "aws_iam_role" "sccontent_dp" {
   provider = aws.bucket
