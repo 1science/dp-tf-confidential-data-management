@@ -512,7 +512,7 @@
       "Resource": "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/dp-patent-edm/*"
     },
     {
-      "Sid": "AllowRelationshipExtractorAccountsAccessToDataList",
+      "Sid": "AllowBetaEnvRelationshipExtractorAccountsAccessToDataList",
       "Effect": "Allow",
       "Principal": {
         "AWS": "arn:aws:iam::831790613400:role/dp-access-extractor-beta"
@@ -526,7 +526,7 @@
       }
     },
     {
-      "Sid": "AllowRelationshipExtractorAccountsAccessToDataGetPut",
+      "Sid": "AllowBetaEnvRelationshipExtractorAccountsAccessToDataGetPut",
       "Effect": "Allow",
       "Principal": {
         "AWS": "arn:aws:iam::831790613400:role/dp-access-extractor-beta"
