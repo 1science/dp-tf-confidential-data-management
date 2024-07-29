@@ -149,6 +149,18 @@
       ]
     },
     {
+      "Sid": "AllowPatentReferenceTaggerAccountsAccessToData",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::210275200797:role/dp-access-tagger-1"
+      },
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-prod-useast2-1"
+      ]
+    },
+    {
       "Sid": "DPPatentEVListBucket1",
       "Effect": "Allow",
       "Principal": {
