@@ -152,7 +152,7 @@
       "Sid": "AllowPatentReferenceTaggerAccountsAccessToData",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::210275200797:role/dp-access-tagger-1"
+        "AWS": "arn:aws:iam::831790613400:role/dp-access-tagger-1"
       },
       "Action": "s3:*",
       "Resource": [
