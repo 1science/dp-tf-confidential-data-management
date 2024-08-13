@@ -501,7 +501,8 @@
             "dp-patent/GB",
             "dp-patent/DE",
             "dp-patent/CN",
-            "dp-patent/JP"
+            "dp-patent/JP",
+            "dp-patent/EN"
           ]
         }
       }
@@ -523,7 +524,8 @@
             "dp-patent/GB/*",
             "dp-patent/DE/*",
             "dp-patent/CN/*",
-            "dp-patent/JP/*"
+            "dp-patent/JP/*",
+            "dp-patent/EN/*"
           ]
         }
       }
@@ -551,7 +553,8 @@
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/GB/*",
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/DE/*",
         "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/CN/*",
-        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/JP/*"
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/JP/*",
+        "arn:aws:s3:::com-elsevier-rdp-dataconfidential-nonprod-useast2-1/dp-patent/EN/*"
       ]
     },
     {
