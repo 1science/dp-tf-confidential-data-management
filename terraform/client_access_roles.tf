@@ -27,11 +27,71 @@ resource "aws_iam_role" "patent_access_engineering_village_role" {
     name = "patent_access_engineering_village_policy"
     policy = jsonencode({
       Version = "2012-10-17"
-      Statement = {
+      Statement = [{
         Effect    = "Allow"
         Action   = ["sqs:*"]
         Resource = ["*"]
-      }
+      },
+        {
+          "Effect": "Allow",
+          "Action": "s3:ListBucket",
+          "Resource": var.config["bucket_arn"],
+          "Condition": {
+            "StringEquals": {
+              "s3:prefix": [
+                "",
+                "dp-patent",
+                "dp-patent/US",
+                "dp-patent/WO",
+                "dp-patent/EP",
+                "dp-patent/GB",
+                "dp-patent/DE",
+                "dp-patent/CN",
+                "dp-patent/JP",
+                "dp-patent/EN"
+              ]
+            }
+          }
+        },
+        {
+          "Effect": "Allow",
+          "Action": "s3:ListBucket",
+          "Resource": var.config["bucket_arn"],
+          "Condition": {
+            "StringLike": {
+              "s3:prefix": [
+                "dp-patent/US/*",
+                "dp-patent/WO/*",
+                "dp-patent/EP/*",
+                "dp-patent/GB/*",
+                "dp-patent/DE/*",
+                "dp-patent/CN/*",
+                "dp-patent/JP/*",
+                "dp-patent/EN/*"
+              ]
+            }
+          }
+        },
+        {
+          "Effect": "Allow",
+          "Action": "s3:GetBucketLocation",
+          "Resource": var.config["bucket_arn"]
+        },
+        {
+          "Effect": "Allow",
+          "Action": "s3:GetObject",
+          "Resource": [
+            "${var.config["bucket_arn"]}/dp-patent/US/*",
+            "${var.config["bucket_arn"]}/dp-patent/WO/*",
+            "${var.config["bucket_arn"]}dp-patent/EP/*",
+            "${var.config["bucket_arn"]}/dp-patent/GB/*",
+            "${var.config["bucket_arn"]}/dp-patent/DE/*",
+            "${var.config["bucket_arn"]}/dp-patent/CN/*",
+            "${var.config["bucket_arn"]}/dp-patent/JP/*",
+            "${var.config["bucket_arn"]}/dp-patent/EN/*"
+          ]
+        }
+      ]
     })
   }
 }
