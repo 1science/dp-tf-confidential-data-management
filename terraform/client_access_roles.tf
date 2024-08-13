@@ -14,7 +14,8 @@ resource "aws_iam_role" "patent_access_engineering_village_role" {
         "Effect" : "Allow",
         "Principal" : {
           "AWS" : [
-            "arn:aws:iam::${var.config["engineering_village_aws_account_id"]}:root"
+            "arn:aws:iam::${var.config["engineering_village_aws_account_id_nonprod"]}:root",
+            "arn:aws:iam::${var.config["engineering_village_aws_account_id_prod"]}:root"
           ]
         },
         "Action" : "sts:AssumeRole",
