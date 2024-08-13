@@ -430,6 +430,7 @@ resource "aws_iam_role" "dp_access_relationship_extractor" {
 }
 
 resource "aws_iam_role" "dp_access_relationship_extractor_beta" {
+  count              = var.config["environment"] == "dev" ? 0 : 1
   provider           = aws.bucket
   name               = "dp-access-extractor-beta"
   assume_role_policy = jsonencode({
