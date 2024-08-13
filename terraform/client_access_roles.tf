@@ -5,7 +5,7 @@ resource "aws_iam_role" "patent_access_engineering_village_role" {
   tags = {
     "creator"        = "kuyekd"
     "customer"       = "Engineering Village"
-    "patent-offices" = "US EU WO"
+    "patent-offices" = "US WO EP GB DE CN JP EN"
   }
   assume_role_policy = jsonencode({
     "Version" : "2012-10-17",
