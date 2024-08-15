@@ -90,6 +90,44 @@ resource "aws_iam_role" "patent_access_engineering_village_role" {
             "${var.config["bucket_arn"]}/dp-patent/JP/*",
             "${var.config["bucket_arn"]}/dp-patent/EN/*"
           ]
+        },
+        {
+          "Effect": "Allow",
+          "Action": "s3:ListBucket",
+          "Resource": var.config["EV_other_bucket"],
+          "Condition": {
+            "StringLike": {
+              "s3:prefix": [
+                "dp-patent/US/*",
+                "dp-patent/WO/*",
+                "dp-patent/EP/*",
+                "dp-patent/GB/*",
+                "dp-patent/DE/*",
+                "dp-patent/CN/*",
+                "dp-patent/JP/*",
+                "dp-patent/EN/*"
+              ]
+            }
+          }
+        },
+        {
+          "Effect": "Allow",
+          "Action": "s3:GetBucketLocation",
+          "Resource": var.config["EV_other_bucket"]
+        },
+        {
+          "Effect": "Allow",
+          "Action": "s3:GetObject",
+          "Resource": [
+            "${var.config["EV_other_bucket"]}/dp-patent/US/*",
+            "${var.config["EV_other_bucket"]}/dp-patent/WO/*",
+            "${var.config["EV_other_bucket"]}dp-patent/EP/*",
+            "${var.config["EV_other_bucket"]}/dp-patent/GB/*",
+            "${var.config["EV_other_bucket"]}/dp-patent/DE/*",
+            "${var.config["EV_other_bucket"]}/dp-patent/CN/*",
+            "${var.config["EV_other_bucket"]}/dp-patent/JP/*",
+            "${var.config["EV_other_bucket"]}/dp-patent/EN/*"
+          ]
         }
       ]
     })
